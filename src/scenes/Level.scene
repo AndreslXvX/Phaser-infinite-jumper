@@ -1,0 +1,191 @@
+{
+    "id": "01aefa93-6044-4159-8358-7e91310aa05f",
+    "sceneType": "SCENE",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": true,
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "Level"
+    },
+    "displayList": [
+        {
+            "type": "Layer",
+            "id": "0d6777ab-3341-47ff-83ab-a7cf9b7f0ada",
+            "label": "LayerPlayer",
+            "blendMode": -1,
+            "list": [
+                {
+                    "prefabId": "bc7614c3-2987-4f5a-ae93-f5836baf564b",
+                    "id": "f555b34d-035d-42b9-be6e-cb45fcdb7b63",
+                    "unlock": [
+                        "x",
+                        "y",
+                        "animationPreview",
+                        "scaleX",
+                        "scaleY"
+                    ],
+                    "label": "prefabJugador",
+                    "scope": "CLASS",
+                    "x": 124,
+                    "y": -80,
+                    "scaleX": 0.7,
+                    "scaleY": 0.7,
+                    "animationPreview": true
+                }
+            ]
+        },
+        {
+            "prefabId": "9393e6a7-d3c8-40df-9c00-0b71c54d9755",
+            "id": "8494902a-7a54-4b25-9fab-dafae8356f39",
+            "label": "prefabGrupoPlataforma",
+            "scope": "CLASS"
+        },
+        {
+            "type": "Layer",
+            "id": "bda43078-4602-4c24-8dc0-7fda3d2a13ee",
+            "label": "LayerLevel",
+            "displayName": "LayerLevel",
+            "blendMode": -1
+        },
+        {
+            "prefabId": "139a3f12-b9f8-4dea-a8fc-8bf5ac0452bf",
+            "id": "ed53300d-af08-49af-8466-8661a2925fef",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "rightWall",
+            "x": 0,
+            "y": 0
+        },
+        {
+            "prefabId": "139a3f12-b9f8-4dea-a8fc-8bf5ac0452bf",
+            "id": "52df6e4b-2073-4642-b4ce-0023e4109e3c",
+            "unlock": [
+                "x",
+                "y",
+                "tileOffsetY",
+                "flipX",
+                "flipY"
+            ],
+            "label": "prefabMuro_1",
+            "tileOffsetY": -120,
+            "x": 216,
+            "y": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "type": "Image",
+            "id": "8337c01a-905b-473b-a154-b6bfa8348b99",
+            "label": "image_1",
+            "hitArea.shape": "RECTANGLE",
+            "hitArea.width": 240,
+            "hitArea.height": 32,
+            "texture": {
+                "key": "ground"
+            },
+            "x": 124,
+            "y": 160,
+            "ArcadeComponent.active": true,
+            "allowGravity": false,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 240,
+            "body.height": 16,
+            "body.offset.y": 16
+        },
+        {
+            "prefabId": "7bf8a19d-1211-4b59-bb38-b034085b171f",
+            "id": "ae2b964c-ede5-49b0-b796-bdfec23896e6",
+            "label": "onAwakeActionScript",
+            "list": [
+                {
+                    "prefabId": "0ed1159f-ee3d-4ce9-82da-e76768c045b5",
+                    "id": "3e1a472b-2335-4445-b1a9-be4c9e38ee2d",
+                    "unlock": [
+                        "sceneKey"
+                    ],
+                    "label": "launchSceneActionScript",
+                    "sceneKey": "UI"
+                }
+            ]
+        }
+    ],
+    "plainObjects": [
+        {
+            "id": "cd27bf69-bd96-4d3b-b25f-a9bc91501f58",
+            "type": "Keyboard.Key",
+            "label": "Teclado_A",
+            "keyCode": "A"
+        },
+        {
+            "id": "faa0f9f4-48ab-4525-bea4-4a392068eeb1",
+            "type": "Keyboard.Key",
+            "label": "Teclado_D",
+            "keyCode": "D"
+        },
+        {
+            "id": "92e55806-16bd-4002-8e30-e73349e68f58",
+            "type": "Collider",
+            "label": "colliderPlayerPlatform",
+            "object1": "prefabJugador",
+            "object2": "prefabGrupoPlataforma.group"
+        },
+        {
+            "id": "06896dac-c901-4239-b68d-be2c8fe17dfb",
+            "type": "Collider",
+            "label": "colliderPlayerWalls",
+            "object1": "prefabJugador",
+            "object2": "wallsBody"
+        },
+        {
+            "id": "0dadad08-8a23-46c0-9f63-1da7317f3a32",
+            "type": "Collider",
+            "label": "collider",
+            "scope": "LOCAL",
+            "object1": "prefabJugador",
+            "object2": "image_1"
+        }
+    ],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    },
+    "lists": [
+        {
+            "id": "92e6b7c7-fc37-45d3-b347-e1797a71968c",
+            "label": "walls",
+            "objectIds": [
+                "adb5cec4-646a-450e-b641-ee7db91596d7",
+                "623daec3-3130-4947-a346-1e7e09f08fc5",
+                "52df6e4b-2073-4642-b4ce-0023e4109e3c",
+                "ed53300d-af08-49af-8466-8661a2925fef"
+            ]
+        },
+        {
+            "id": "80583084-fe82-4275-97fd-8d05a8b108ab",
+            "label": "MovingWallsTileSprites",
+            "objectIds": [
+                "adb5cec4-646a-450e-b641-ee7db91596d7",
+                "623daec3-3130-4947-a346-1e7e09f08fc5",
+                "52df6e4b-2073-4642-b4ce-0023e4109e3c",
+                "ed53300d-af08-49af-8466-8661a2925fef"
+            ]
+        },
+        {
+            "id": "7d8851c7-f320-4289-98db-30ece65f5a77",
+            "label": "wallsBody",
+            "objectIds": [
+                "adb5cec4-646a-450e-b641-ee7db91596d7",
+                "623daec3-3130-4947-a346-1e7e09f08fc5",
+                "52df6e4b-2073-4642-b4ce-0023e4109e3c",
+                "ed53300d-af08-49af-8466-8661a2925fef"
+            ]
+        }
+    ]
+}

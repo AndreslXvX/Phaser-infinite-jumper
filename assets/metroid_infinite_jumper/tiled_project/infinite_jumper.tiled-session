@@ -1,0 +1,66 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "ground.tmx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "ground.tmx": {
+            "scale": 1.0415,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 93.13490158425348,
+                "y": 36.00576092174748
+            }
+        },
+        "ground.tmx#tilesets": {
+            "scaleInDock": 1.9723
+        },
+        "platform.tmx": {
+            "scale": 11.4942,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 14.268065633101914,
+                "y": -5.176523812009538
+            }
+        },
+        "platform.tmx#tilesets": {
+            "scaleInDock": 1
+        },
+        "wall.tmx": {
+            "scale": 2.5248,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": -22.17997465145754,
+                "y": 182.39068441064643
+            }
+        },
+        "wall.tmx#tilesets": {
+            "scaleInDock": 1.6856
+        }
+    },
+    "last.imagePath": "/Users/swestover/Desktop/metroid_infinite_jumper",
+    "map.height": 1,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 5,
+    "openFiles": [
+        "ground.tmx",
+        "wall.tmx",
+        "platform.tmx"
+    ],
+    "project": "infinite_jumper.tiled-project",
+    "recentFiles": [
+        "platform.tmx",
+        "wall.tmx",
+        "ground.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
