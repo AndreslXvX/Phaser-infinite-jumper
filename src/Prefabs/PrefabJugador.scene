@@ -7,9 +7,7 @@
         "importFileExtension": true,
         "preloadMethodName": "",
         "preloadPackFiles": [],
-        "createMethodName": "",
-        "borderWidth": 248,
-        "borderHeight": 176
+        "createMethodName": ""
     },
     "displayList": [
         {
@@ -23,6 +21,8 @@
                 "key": "player",
                 "frame": "player-idle-1.png"
             },
+            "scaleX": 3,
+            "scaleY": 3,
             "animationPlayMethod": 1,
             "animationKey": "AnimacionQuieto",
             "animationPreview": true,

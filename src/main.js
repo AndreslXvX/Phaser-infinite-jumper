@@ -5,8 +5,8 @@ import UI from "./scenes/UI.js";
 window.addEventListener('load', function () {
 
 	var game = new Phaser.Game({
-		width: 248,
-		height: 176,
+		width: 800,
+		height: 600,
 		type: Phaser.AUTO,
         backgroundColor: "#242424",
 		scale: {
@@ -17,8 +17,7 @@ window.addEventListener('load', function () {
 		physics: {
 			default: 'arcade',
 			arcade: {
-				gravity: {x: 0, y: 500},
-				//debug: true
+				gravity: {x: 0, y: 800},
 				}
 				
 		}

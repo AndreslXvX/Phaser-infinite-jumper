@@ -3,6 +3,8 @@
 
 /* START OF COMPILED CODE */
 
+import BackgroundPrefab from "../Prefabs/BackgroundPrefab.js";
+import MiddleGroundPrefab from "../Prefabs/MiddleGroundPrefab.js";
 import PrefabJugador from "../Prefabs/PrefabJugador.js";
 import PrefabGrupoPlataforma from "../Prefabs/PrefabGrupoPlataforma.js";
 import PrefabMuro from "../Prefabs/PrefabMuro.js";
@@ -34,10 +36,16 @@ export default class Level extends Phaser.Scene {
 		const layerPlayer = this.add.layer();
 		layerPlayer.blendMode = Phaser.BlendModes.SKIP_CHECK;
 
+		// backgroundPrefab
+		const backgroundPrefab = new BackgroundPrefab(this, 0, 0);
+		layerPlayer.add(backgroundPrefab);
+
+		// middleGroundPrefab
+		const middleGroundPrefab = new MiddleGroundPrefab(this, 0, 0);
+		layerPlayer.add(middleGroundPrefab);
+
 		// prefabJugador
-		const prefabJugador = new PrefabJugador(this, 124, -80);
-		prefabJugador.scaleX = 0.7;
-		prefabJugador.scaleY = 0.7;
+		const prefabJugador = new PrefabJugador(this, 400, -80);
 		layerPlayer.add(prefabJugador);
 
 		// prefabGrupoPlataforma
@@ -49,19 +57,21 @@ export default class Level extends Phaser.Scene {
 		layerLevel.blendMode = Phaser.BlendModes.SKIP_CHECK;
 
 		// rightWall
-		const rightWall = new PrefabMuro(this, 0, 0);
+		const rightWall = new PrefabMuro(this);
 		this.add.existing(rightWall);
 
 		// prefabMuro_1
-		const prefabMuro_1 = new PrefabMuro(this, 216, 0);
+		const prefabMuro_1 = new PrefabMuro(this, 720, 0);
 		this.add.existing(prefabMuro_1);
 		prefabMuro_1.flipX = true;
 		prefabMuro_1.flipY = false;
 
 		// image_1
 		/** @type {Phaser.GameObjects.Image & { body: Phaser.Physics.Arcade.Body }} */
-		const image_1 = this.add.image(124, 160, "ground");
+		const image_1 = this.add.image(400, 48, "ground");
 		image_1.setInteractive(new Phaser.Geom.Rectangle(0, 0, 240, 32), Phaser.Geom.Rectangle.Contains);
+		image_1.scaleX = 3;
+		image_1.scaleY = 3;
 		this.physics.add.existing(image_1, false);
 		image_1.body.allowGravity = false;
 		image_1.body.pushable = false;
@@ -77,8 +87,9 @@ export default class Level extends Phaser.Scene {
 
 		// lists
 		const walls = [prefabMuro_1, rightWall];
-		const movingWallsTileSprites = [prefabMuro_1, rightWall];
+		const movingWallsTileSprites = [prefabMuro_1, rightWall, middleGroundPrefab];
 		const wallsBody = [prefabMuro_1, rightWall];
+		const platforms = [];
 
 		// colliderPlayerPlatform
 		const colliderPlayerPlatform = this.physics.add.collider(prefabJugador, prefabGrupoPlataforma.group);
@@ -88,6 +99,9 @@ export default class Level extends Phaser.Scene {
 
 		// collider
 		this.physics.add.collider(prefabJugador, image_1);
+
+		// WallPlatformCollide
+		this.physics.add.collider(walls, prefabGrupoPlataforma);
 
 		// prefabMuro_1 (prefab fields)
 		prefabMuro_1.tileOffsetY = -120;
@@ -104,6 +118,7 @@ export default class Level extends Phaser.Scene {
 		this.walls = walls;
 		this.movingWallsTileSprites = movingWallsTileSprites;
 		this.wallsBody = wallsBody;
+		this.platforms = platforms;
 
 		this.events.emit("scene-awake");
 	}
@@ -122,51 +137,66 @@ export default class Level extends Phaser.Scene {
 	colliderPlayerWalls;
 	/** @type {PrefabMuro[]} */
 	walls;
-	/** @type {PrefabMuro[]} */
+	/** @type {Array<PrefabMuro|MiddleGroundPrefab>} */
 	movingWallsTileSprites;
 	/** @type {PrefabMuro[]} */
 	wallsBody;
+	/** @type {Array<any>} */
+	platforms;
 
 	/* START-USER-CODE */
 	isGameOver = false
 	currentScore = 0
 	maxHeight = 0
 	startingMaxHeight = 0
+	cameraYposition;
+	setoffsetY;
+	jumpsNum;
 
 
 	// Write more your code here
 
 	create() {
 		this.editorCreate();
-		this.cameras.main.startFollow(this.prefabJugador, false, 0.1, 1, 0.1);
+		this.cameras.main.startFollow(this.prefabJugador, true);
 		this.cameras.main.setDeadzone(this.scale.width)
 		this.isGameOver = false
 		this.currentScore = 0
 		this.maxHeight = 0
 		this.startingMaxHeight = 0
 		this.firstJumpMade = false
+		this.cameraYposition
+		this.setoffsetY = 0
+		this.jumpsNum = 0
 	}
 
 	update(){
 
 		const distance = Math.floor(Math.abs(this.prefabJugador.body.bottom))
-
-		this.WallsYupdate()
 		this.Rebotar(distance)
+		this.setoffsetY = Math.floor(this.cameras.main.worldView.y)
+		this.wallsBody.forEach((tileSprite) => {
+			if(tileSprite.flipX){
+			tileSprite.body.setOffset(15, this.setoffsetY)
+			} else {
+			tileSprite.body.setOffset(0, this.setoffsetY)
+			}
+		})
+
 
 
 		if(this.teclado_A.isDown){
 			this.prefabJugador.setFlipX(true)
-			this.prefabJugador.setVelocityX(-100)
+			this.prefabJugador.setVelocityX(-400)
 		} else if(this.teclado_D.isDown){
 			this.prefabJugador.setFlipX(false)
-			this.prefabJugador.setVelocityX(100)
+			this.prefabJugador.setVelocityX(400)
 		} else {
 			this.prefabJugador.setVelocityX(0)
 		}
 
 		this.movingWallsTileSprites.forEach((tileSprite) => {
-			tileSprite.tilePositionY = this.prefabJugador.y + tileSprite.tileOffsetY
+			tileSprite.tilePositionY = this.prefabJugador.y * 0.2 + (tileSprite.tileOffsetY || 0)
 		});
 
 		if(this.isGameOver){
@@ -193,9 +223,8 @@ export default class Level extends Phaser.Scene {
 			this.currentScore = this.maxHeight - this.startingMaxHeight;
 			this.scene.get("UI").updateScoreText(Math.floor(this.currentScore / 10))
 		}
-
-
-		if(this.prefabJugador.y > this.prefabGrupoPlataforma.bottomMostPlatformYPosition + 50){
+		console.log(this.prefabGrupoPlataforma.BottomPlatformYPosition)
+		if(this.prefabJugador.y > this.prefabGrupoPlataforma.BottomPlatformYPosition + 150){
 			this.isGameOver = true;
 
 			this.prefabJugador.play('animacionPerder')
@@ -215,7 +244,8 @@ export default class Level extends Phaser.Scene {
 			this.prefabJugador.once(Phaser.Animations.Events.ANIMATION_COMPLETE_KEY + 'animacionGirar', () => {
 				this.prefabJugador.play('animacionCaer')
 			})
-			this.prefabJugador.setVelocityY(-400)
+			this.prefabJugador.setVelocityY(-600)
+			this.jumpsNum += 1
 
 			if(!this.firstJumpMade){
 				this.firstJumpMade = true;
@@ -223,16 +253,7 @@ export default class Level extends Phaser.Scene {
 			}
 
 			}
-	}
-	WallsYupdate(){
 
-		this.wallsBody.forEach((tileSprite) => {
-			if(tileSprite.flipX){
-			tileSprite.body.setOffset(15, this.cameras.main.worldView.y)
-			} else {
-				tileSprite.body.setOffset(0, this.cameras.main.worldView.y)
-			}
-		})
 	}
 
 	/* END-USER-CODE */

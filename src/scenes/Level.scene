@@ -17,21 +17,39 @@
             "blendMode": -1,
             "list": [
                 {
+                    "prefabId": "dabd12e0-752f-436b-b784-ca69c9c13a07",
+                    "id": "43870d65-381b-4c29-90f8-6c2e7882581d",
+                    "unlock": [
+                        "x",
+                        "y"
+                    ],
+                    "label": "backgroundPrefab",
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "prefabId": "1a493c91-45ce-42e2-909a-b5f8a6d3af75",
+                    "id": "b70f386f-0909-4452-bdf6-6bdf2b5b4132",
+                    "unlock": [
+                        "x",
+                        "y"
+                    ],
+                    "label": "middleGroundPrefab",
+                    "x": 0,
+                    "y": 0
+                },
+                {
                     "prefabId": "bc7614c3-2987-4f5a-ae93-f5836baf564b",
                     "id": "f555b34d-035d-42b9-be6e-cb45fcdb7b63",
                     "unlock": [
                         "x",
                         "y",
-                        "animationPreview",
-                        "scaleX",
-                        "scaleY"
+                        "animationPreview"
                     ],
                     "label": "prefabJugador",
                     "scope": "CLASS",
-                    "x": 124,
+                    "x": 400,
                     "y": -80,
-                    "scaleX": 0.7,
-                    "scaleY": 0.7,
                     "animationPreview": true
                 }
             ]
@@ -52,27 +70,21 @@
         {
             "prefabId": "139a3f12-b9f8-4dea-a8fc-8bf5ac0452bf",
             "id": "ed53300d-af08-49af-8466-8661a2925fef",
-            "unlock": [
-                "x",
-                "y"
-            ],
-            "label": "rightWall",
-            "x": 0,
-            "y": 0
+            "label": "rightWall"
         },
         {
             "prefabId": "139a3f12-b9f8-4dea-a8fc-8bf5ac0452bf",
             "id": "52df6e4b-2073-4642-b4ce-0023e4109e3c",
             "unlock": [
-                "x",
-                "y",
                 "tileOffsetY",
                 "flipX",
-                "flipY"
+                "flipY",
+                "x",
+                "y"
             ],
             "label": "prefabMuro_1",
             "tileOffsetY": -120,
-            "x": 216,
+            "x": 720,
             "y": 0,
             "flipX": true,
             "flipY": false
@@ -87,8 +99,10 @@
             "texture": {
                 "key": "ground"
             },
-            "x": 124,
-            "y": 160,
+            "x": 400,
+            "y": 48,
+            "scaleX": 3,
+            "scaleY": 3,
             "ArcadeComponent.active": true,
             "allowGravity": false,
             "pushable": false,
@@ -148,6 +162,14 @@
             "scope": "LOCAL",
             "object1": "prefabJugador",
             "object2": "image_1"
+        },
+        {
+            "id": "fefa018e-544e-4092-b91a-35b0841b846e",
+            "type": "Collider",
+            "label": "WallPlatformCollide",
+            "scope": "LOCAL",
+            "object1": "walls",
+            "object2": "prefabGrupoPlataforma"
         }
     ],
     "meta": {
@@ -174,7 +196,8 @@
                 "adb5cec4-646a-450e-b641-ee7db91596d7",
                 "623daec3-3130-4947-a346-1e7e09f08fc5",
                 "52df6e4b-2073-4642-b4ce-0023e4109e3c",
-                "ed53300d-af08-49af-8466-8661a2925fef"
+                "ed53300d-af08-49af-8466-8661a2925fef",
+                "b70f386f-0909-4452-bdf6-6bdf2b5b4132"
             ]
         },
         {
@@ -186,6 +209,10 @@
                 "52df6e4b-2073-4642-b4ce-0023e4109e3c",
                 "ed53300d-af08-49af-8466-8661a2925fef"
             ]
+        },
+        {
+            "id": "a9ac186e-0b48-468c-9b61-eb1970bee87c",
+            "label": "Platforms"
         }
     ]
 }

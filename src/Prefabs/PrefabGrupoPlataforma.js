@@ -23,16 +23,17 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 			classType: PrefabPlataforma,
 			runChildUpdate: true,
 		});
-		this.group.get(120,176)
-
-		for(let i = 0; i < 5; i += 1){
-			const x = Phaser.Math.Between(45, 200);
-			const y =  i * (-150) + 10;
+		this.UpperPlatformYPosition = 0
+		for (let i = 1; i < 5; i += 1) {
+			const x = Phaser.Math.Between(80, 700);
+			const y = i * (-150);
 			this.group.get(x, y)
-
+			if(y < this.UpperPlatformYPosition){
+				this.UpperPlatformYPosition = y;
+			}
+			
 		}
-		this.maxPlatformDistance = this.scene.scale.height * 3
-		this.bottomMostPlatformYPosition = 0
+		
 		this.movingPlatform = false
 		/* END-USER-CTR-CODE */
 	}
@@ -43,37 +44,60 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 	/**@type {number} */
 	maxPlatformDistance;
 	/**@type {number} */
-	bottomMostPlatformYPosition;
+	UpperPlatformYPosition;
+	/**@type {number} */
+	BottomPlatformYPosition;
 	/**@type {bool} */
 	movingPlatform;
+	/**@type {number} */
+	playerPosition;
 	// Write your code here.
 
 	update(){
-		const scrollY = this.scene.cameras.main.scrollY;
+
+		// if(this.numPlataformas === 0){
+		// 		for(this.numPlataformas = 1; this.numPlataformas < 5; this.numPlataformas += 1){
+		// 			const x = Phaser.Math.Between(80, 700);
+		// 			const y =  this.numPlataformas * (-150);
+		// 			this.group.get(x, y)
+		// 			this.maxPlatformDistance = y
+		// 			console.log(this.maxPlatformDistance)
+
+		// 		}
+				
+		// } 
+
 		const children = this.group.getChildren();
 		const childrenToMove = [];
-		this.bottomMostPlatformYPosition = children[0].y
-
+		//this.UpperPlatformYPosition = children[0].y
+		this.maxPlatformDistance = this.scene.cameras.main.worldView.centerY * 5
+		this.playerPosition = this.scene.cameras.main.worldView.centerY
+		// console.log("distancia ultima plataforma y: " + this.UpperPlatformYPosition)
+		//  console.log(" plataforma y: " + children[0].y)
+		// console.log("camara y posicion: " + this.scene.cameras.main.worldView.centerY)
+		
 		children.forEach((child) => {
-			if(child.y >= scrollY + this.maxPlatformDistance){
+			if(this.playerPosition <= child.y - 300 ){
+				console.log("plataforma y: " + child.y)
+				this.BottomPlatformYPosition = child.y;
 				childrenToMove.push(child);
 			}
-			if(child.y > this.bottomMostPlatformYPosition){
-				this.bottomMostPlatformYPosition = child.y;
+			if(child.y < this.UpperPlatformYPosition){
+				this.UpperPlatformYPosition = child.y;
+				console.log("UpperPlatform y: " + child.y)
 			}
 			
 		})
 
 		childrenToMove.forEach((child) => {
-			child.x = Phaser.Math.Between(45, 200)
-			let childrenToMoveYOffset = Phaser.Math.Between(30, 30)
-			child.y = scrollY - childrenToMoveYOffset;
-			if(Phaser.Math.RND.between(0,1) === 1 ){
-				child.startMovingPlatform()
-			} else {
-				child.stopMovingPlatform()
-			}
-			console.log(this.movingPlatform)
+			child.x = Phaser.Math.Between(80, 700)
+			let childrenToMoveYOffset = this.UpperPlatformYPosition - 150
+			child.y = childrenToMoveYOffset;
+			// if(Phaser.Math.RND.between(0,1) === 1 ){
+			// 	child.startMovingPlatform()
+			// } else {
+			// 	child.stopMovingPlatform()
+			// }
 			
 		})
 

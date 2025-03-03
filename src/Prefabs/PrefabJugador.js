@@ -12,6 +12,8 @@ export default class PrefabJugador extends Phaser.Physics.Arcade.Sprite {
 		super(scene, x ?? 0, y ?? 0, texture || "player", frame ?? "player-idle-1.png");
 
 		this.setInteractive(new Phaser.Geom.Rectangle(0, 0, 80, 80), Phaser.Geom.Rectangle.Contains);
+		this.scaleX = 3;
+		this.scaleY = 3;
 		scene.physics.add.existing(this, false);
 		this.body.checkCollision.up = false;
 		this.body.setOffset(31, 26);

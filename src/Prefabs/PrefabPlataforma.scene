@@ -6,9 +6,7 @@
         "autoImport": true,
         "preloadMethodName": "",
         "preloadPackFiles": [],
-        "createMethodName": "",
-        "borderWidth": 1280,
-        "borderHeight": 720
+        "createMethodName": ""
     },
     "displayList": [
         {
@@ -21,10 +19,14 @@
             "texture": {
                 "key": "platform"
             },
-            "scaleX": 0.3,
-            "scaleY": 0.3,
+            "scaleX": 1.5,
+            "scaleY": 1.5,
             "allowGravity": false,
+            "down": false,
+            "left": false,
+            "right": false,
             "pushable": false,
+            "immovable": true,
             "body.width": 80,
             "body.height": 16
         }
