@@ -20,7 +20,9 @@ export default class UI extends Phaser.Scene {
 	editorCreate() {
 
 		// scoreText
-		const scoreText = this.add.text(235, 5, "", {});
+		const scoreText = this.add.text(780, 535, "", {});
+		scoreText.scaleX = 3;
+		scoreText.scaleY = 3;
 		scoreText.setOrigin(1, 0);
 		scoreText.text = "0";
 		scoreText.setStyle({ "fontFamily": "PressStart2P-Regular" });

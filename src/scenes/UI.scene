@@ -7,9 +7,7 @@
         "importFileExtension": true,
         "preloadPackFiles": [],
         "createMethodName": "editorCreate",
-        "sceneKey": "UI",
-        "borderWidth": 248,
-        "borderHeight": 176
+        "sceneKey": "UI"
     },
     "displayList": [
         {
@@ -17,8 +15,10 @@
             "id": "cdddbaba-9cd9-4d9e-8ae7-6384113a8066",
             "label": "scoreText",
             "scope": "CLASS",
-            "x": 235,
-            "y": 5,
+            "x": 780,
+            "y": 535,
+            "scaleX": 3,
+            "scaleY": 3,
             "originX": 1,
             "text": "0",
             "fontFamily": "PressStart2P-Regular"

@@ -54,37 +54,18 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 	// Write your code here.
 
 	update(){
-
-		// if(this.numPlataformas === 0){
-		// 		for(this.numPlataformas = 1; this.numPlataformas < 5; this.numPlataformas += 1){
-		// 			const x = Phaser.Math.Between(80, 700);
-		// 			const y =  this.numPlataformas * (-150);
-		// 			this.group.get(x, y)
-		// 			this.maxPlatformDistance = y
-		// 			console.log(this.maxPlatformDistance)
-
-		// 		}
-				
-		// } 
-
 		const children = this.group.getChildren();
 		const childrenToMove = [];
-		//this.UpperPlatformYPosition = children[0].y
 		this.maxPlatformDistance = this.scene.cameras.main.worldView.centerY * 5
 		this.playerPosition = this.scene.cameras.main.worldView.centerY
-		// console.log("distancia ultima plataforma y: " + this.UpperPlatformYPosition)
-		//  console.log(" plataforma y: " + children[0].y)
-		// console.log("camara y posicion: " + this.scene.cameras.main.worldView.centerY)
 		
 		children.forEach((child) => {
 			if(this.playerPosition <= child.y - 300 ){
-				console.log("plataforma y: " + child.y)
 				this.BottomPlatformYPosition = child.y;
 				childrenToMove.push(child);
 			}
 			if(child.y < this.UpperPlatformYPosition){
 				this.UpperPlatformYPosition = child.y;
-				console.log("UpperPlatform y: " + child.y)
 			}
 			
 		})

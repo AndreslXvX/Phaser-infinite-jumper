@@ -1,0 +1,111 @@
+{
+    "id": "90e8281a-e075-475f-90f2-c0918bd811e9",
+    "sceneType": "SCENE",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": true,
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "GameOverScene"
+    },
+    "displayList": [
+        {
+            "type": "Text",
+            "id": "a1b3aa01-2a55-4884-b1ed-3b9f2abda9c5",
+            "label": "GameOverText",
+            "displayName": "GameOver",
+            "x": 112,
+            "y": 130,
+            "text": "Game Over",
+            "fontFamily": "PressStart2P-Regular",
+            "fontSize": "64px"
+        },
+        {
+            "type": "Text",
+            "id": "3283b636-8b47-428c-a75d-ba9db92a7810",
+            "label": "ScoreText",
+            "displayName": "Score",
+            "x": 290,
+            "y": 268,
+            "text": "Score",
+            "fontFamily": "PressStart2P-Regular",
+            "fontSize": "44px"
+        },
+        {
+            "type": "Text",
+            "id": "df986ab4-2689-48cf-9e3c-8940cfeeb65f",
+            "label": "ScoreValueText",
+            "displayName": "ScoreValue",
+            "scope": "CLASS",
+            "x": 400,
+            "y": 358,
+            "originX": 0.5,
+            "originY": 0.5,
+            "text": "0",
+            "align": "center",
+            "fontFamily": "PressStart2P-Regular",
+            "fontSize": "34px"
+        },
+        {
+            "prefabId": "7bf8a19d-1211-4b59-bb38-b034085b171f",
+            "id": "743553e7-2524-4f9e-bd96-fbe053ac3e32",
+            "label": "onAwakeActionScript",
+            "list": [
+                {
+                    "prefabId": "26d6c86f-1f9a-4dc9-9d2e-f64a7fbbbb28",
+                    "id": "c839d444-b781-4b1c-ae57-d1ffb3a0c685",
+                    "unlock": [
+                        "duration",
+                        "fadeEvent"
+                    ],
+                    "label": "fadeEffectCameraActionScript",
+                    "duration": 1000,
+                    "fadeEvent": "camerafadeincomplete",
+                    "list": [
+                        {
+                            "prefabId": "34cde368-8bd4-4596-97fc-47c6825699b1",
+                            "id": "857c8ce5-e7d0-41aa-9e87-950be46e974e",
+                            "unlock": [
+                                "delay"
+                            ],
+                            "label": "timeEventActionScript",
+                            "delay": 3000,
+                            "list": [
+                                {
+                                    "prefabId": "26d6c86f-1f9a-4dc9-9d2e-f64a7fbbbb28",
+                                    "id": "76be8e30-40d1-48c3-af8e-08461bc19030",
+                                    "unlock": [
+                                        "duration",
+                                        "fadeEvent"
+                                    ],
+                                    "label": "fadeEffectCameraActionScript_1",
+                                    "duration": 1000,
+                                    "fadeEvent": "camerafadeoutcomplete",
+                                    "list": [
+                                        {
+                                            "prefabId": "6b1b396b-83fa-4b7a-8360-c7e156fc0f24",
+                                            "id": "d287981e-8eb5-436e-a22c-009fc50c1ca6",
+                                            "unlock": [
+                                                "sceneKey"
+                                            ],
+                                            "label": "startSceneActionScript",
+                                            "sceneKey": "Level"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
+}

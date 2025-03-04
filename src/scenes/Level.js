@@ -10,6 +10,10 @@ import PrefabGrupoPlataforma from "../Prefabs/PrefabGrupoPlataforma.js";
 import PrefabMuro from "../Prefabs/PrefabMuro.js";
 import OnAwakeActionScript from "../scriptnodes/utils/OnAwakeActionScript.js";
 import LaunchSceneActionScript from "../scriptnodes/scene/LaunchSceneActionScript.js";
+import TimeEventActionScript from "../scriptnodes/timer/TimeEventActionScript.js";
+import FadeEffectCameraActionScript from "../scriptnodes/camera/FadeEffectCameraActionScript.js";
+import StopSceneActionScript from "../scriptnodes/scene/StopSceneActionScript.js";
+import StartSceneActionScript from "../scriptnodes/scene/StartSceneActionScript.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -56,16 +60,6 @@ export default class Level extends Phaser.Scene {
 		const layerLevel = this.add.layer();
 		layerLevel.blendMode = Phaser.BlendModes.SKIP_CHECK;
 
-		// rightWall
-		const rightWall = new PrefabMuro(this);
-		this.add.existing(rightWall);
-
-		// prefabMuro_1
-		const prefabMuro_1 = new PrefabMuro(this, 720, 0);
-		this.add.existing(prefabMuro_1);
-		prefabMuro_1.flipX = true;
-		prefabMuro_1.flipY = false;
-
 		// image_1
 		/** @type {Phaser.GameObjects.Image & { body: Phaser.Physics.Arcade.Body }} */
 		const image_1 = this.add.image(400, 48, "ground");
@@ -79,17 +73,62 @@ export default class Level extends Phaser.Scene {
 		image_1.body.setOffset(0, 16);
 		image_1.body.setSize(240, 16, false);
 
+		// rightWall
+		const rightWall = new PrefabMuro(this);
+		this.add.existing(rightWall);
+
+		// prefabMuro_1
+		const prefabMuro_1 = new PrefabMuro(this, 720, 0);
+		this.add.existing(prefabMuro_1);
+		prefabMuro_1.flipX = true;
+		prefabMuro_1.flipY = false;
+
+		// LeftButton
+		const leftButton = this.add.image(0, 0, "_MISSING");
+		leftButton.scaleX = 12.5;
+		leftButton.scaleY = 18.9;
+		leftButton.setOrigin(0, 0);
+		leftButton.alpha = 0;
+		leftButton.alphaTopLeft = 0;
+		leftButton.alphaTopRight = 0;
+		leftButton.alphaBottomLeft = 0;
+		leftButton.alphaBottomRight = 0;
+
+		// RightButton
+		const rightButton = this.add.image(800, 0, "_MISSING");
+		rightButton.scaleX = 12.5;
+		rightButton.scaleY = 18.9;
+		rightButton.setOrigin(1, 0);
+		rightButton.alpha = 0;
+		rightButton.alphaTopLeft = 0;
+		rightButton.alphaTopRight = 0;
+		rightButton.alphaBottomLeft = 0;
+		rightButton.alphaBottomRight = 0;
+
 		// onAwakeActionScript
 		const onAwakeActionScript = new OnAwakeActionScript(this);
 
 		// launchSceneActionScript
 		const launchSceneActionScript = new LaunchSceneActionScript(onAwakeActionScript);
 
+		// timeEventActionScript
+		const timeEventActionScript = new TimeEventActionScript(this);
+
+		// fadeEffectCameraActionScript
+		const fadeEffectCameraActionScript = new FadeEffectCameraActionScript(timeEventActionScript);
+
+		// stopSceneActionScript
+		const stopSceneActionScript = new StopSceneActionScript(fadeEffectCameraActionScript);
+
+		// startSceneActionScript
+		const startSceneActionScript = new StartSceneActionScript(fadeEffectCameraActionScript);
+
 		// lists
 		const walls = [prefabMuro_1, rightWall];
-		const movingWallsTileSprites = [prefabMuro_1, rightWall, middleGroundPrefab];
+		const movingWallsTileSprites = [prefabMuro_1, rightWall];
 		const wallsBody = [prefabMuro_1, rightWall];
 		const platforms = [];
+		const movingMiddleGround = [middleGroundPrefab];
 
 		// colliderPlayerPlatform
 		const colliderPlayerPlatform = this.physics.add.collider(prefabJugador, prefabGrupoPlataforma.group);
@@ -109,8 +148,22 @@ export default class Level extends Phaser.Scene {
 		// launchSceneActionScript (prefab fields)
 		launchSceneActionScript.sceneKey = "UI";
 
+		// fadeEffectCameraActionScript (prefab fields)
+		fadeEffectCameraActionScript.duration = 1000;
+		fadeEffectCameraActionScript.fadeEvent = "camerafadeoutcomplete";
+
+		// stopSceneActionScript (prefab fields)
+		stopSceneActionScript.sceneKey = "UI";
+
+		// startSceneActionScript (prefab fields)
+		startSceneActionScript.sceneKey = "GameOverScene";
+
 		this.prefabJugador = prefabJugador;
 		this.prefabGrupoPlataforma = prefabGrupoPlataforma;
+		this.stopSceneActionScript = stopSceneActionScript;
+		this.startSceneActionScript = startSceneActionScript;
+		this.fadeEffectCameraActionScript = fadeEffectCameraActionScript;
+		this.timeEventActionScript = timeEventActionScript;
 		this.teclado_A = teclado_A;
 		this.teclado_D = teclado_D;
 		this.colliderPlayerPlatform = colliderPlayerPlatform;
@@ -119,6 +172,7 @@ export default class Level extends Phaser.Scene {
 		this.movingWallsTileSprites = movingWallsTileSprites;
 		this.wallsBody = wallsBody;
 		this.platforms = platforms;
+		this.movingMiddleGround = movingMiddleGround;
 
 		this.events.emit("scene-awake");
 	}
@@ -127,6 +181,14 @@ export default class Level extends Phaser.Scene {
 	prefabJugador;
 	/** @type {PrefabGrupoPlataforma} */
 	prefabGrupoPlataforma;
+	/** @type {StopSceneActionScript} */
+	stopSceneActionScript;
+	/** @type {StartSceneActionScript} */
+	startSceneActionScript;
+	/** @type {FadeEffectCameraActionScript} */
+	fadeEffectCameraActionScript;
+	/** @type {TimeEventActionScript} */
+	timeEventActionScript;
 	/** @type {Phaser.Input.Keyboard.Key} */
 	teclado_A;
 	/** @type {Phaser.Input.Keyboard.Key} */
@@ -137,12 +199,14 @@ export default class Level extends Phaser.Scene {
 	colliderPlayerWalls;
 	/** @type {PrefabMuro[]} */
 	walls;
-	/** @type {Array<PrefabMuro|MiddleGroundPrefab>} */
+	/** @type {PrefabMuro[]} */
 	movingWallsTileSprites;
 	/** @type {PrefabMuro[]} */
 	wallsBody;
 	/** @type {Array<any>} */
 	platforms;
+	/** @type {MiddleGroundPrefab[]} */
+	movingMiddleGround;
 
 	/* START-USER-CODE */
 	isGameOver = false
@@ -171,9 +235,29 @@ export default class Level extends Phaser.Scene {
 	}
 
 	update(){
-
+		
 		const distance = Math.floor(Math.abs(this.prefabJugador.body.bottom))
-		this.Rebotar(distance)
+		const tocarFondo = this.prefabJugador.body.touching.down
+		if(tocarFondo){
+			this.prefabJugador.play('animacionSaltar')
+			this.prefabJugador.once(Phaser.Animations.Events.ANIMATION_COMPLETE_KEY + 'animacionSaltar', () => {
+				this.prefabJugador.play('animacionGirar')
+			})
+			this.prefabJugador.once(Phaser.Animations.Events.ANIMATION_COMPLETE_KEY + 'animacionGirar', () => {
+				this.prefabJugador.play('animacionCaer')
+			})
+			this.prefabJugador.setVelocityY(-600)
+			this.jumpsNum += 1
+
+			if(!this.firstJumpMade){
+				this.firstJumpMade = true;
+				this.startingMaxHeight = distance
+			}
+		}
+		
+		
+		
+		
 		this.setoffsetY = Math.floor(this.cameras.main.worldView.y)
 		this.wallsBody.forEach((tileSprite) => {
 			if(tileSprite.flipX){
@@ -196,63 +280,46 @@ export default class Level extends Phaser.Scene {
 		}
 
 		this.movingWallsTileSprites.forEach((tileSprite) => {
-			tileSprite.tilePositionY = this.prefabJugador.y * 0.2 + (tileSprite.tileOffsetY || 0)
+			tileSprite.tilePositionY = this.prefabJugador.y / 3.5 + (tileSprite.tileOffsetY || 0)
 		});
-
-		if(this.isGameOver){
-			this.prefabJugador.setVelocityY(15)
-			this.prefabJugador.setVelocityX(0)
-			const fx = this.prefabJugador.preFX.addWipe(0.1, 1, 0);
-
-        this.tweens.add({
-            targets: fx,
-            progress: 1,
-            repeatDelay: 1000,
-            hold: 1000,
-            duration: 2000,
-			onComplete: () => {
-				this.prefabJugador.body.enable = false
-			}
-
-        });
-			return
-		}
+		this.movingMiddleGround.forEach((tileSprite) => {
+			tileSprite.tilePositionY = this.prefabJugador.y / 7
+		});
 
 		if(distance > this.maxHeight && this.firstJumpMade){
 			this.maxHeight = distance;
 			this.currentScore = this.maxHeight - this.startingMaxHeight;
 			this.scene.get("UI").updateScoreText(Math.floor(this.currentScore / 10))
 		}
-		console.log(this.prefabGrupoPlataforma.BottomPlatformYPosition)
-		if(this.prefabJugador.y > this.prefabGrupoPlataforma.BottomPlatformYPosition + 150){
-			this.isGameOver = true;
-
-			this.prefabJugador.play('animacionPerder')
-			console.log('Game Over')
+		
+		if(this.isGameOver){
+			this.prefabJugador.setVelocityY(15)
+			return
 		}
 
+		if(this.prefabJugador.y > this.prefabGrupoPlataforma.BottomPlatformYPosition + 150){
+			this.isGameOver = true;
+			this.prefabJugador.play('animacionPerder');
+			this.prefabJugador.setVelocityX(0)
+			const fx = this.prefabJugador.preFX.addWipe(0.1, 1, 0);
+			this.tweens.add({
+				targets: fx,
+				progress: 1,
+				duration: 3000,
+				onComplete: () => {
+					this.prefabJugador.body.enable = false;
+					console.log('leprechaun')
+					this.registry.set('score', Math.floor(this.currentScore / 10));
+					this.timeEventActionScript.execute()
+				},
+        });
+		
+		}
+		
+		
 		this.prefabGrupoPlataforma.update(); 
 
-	}
-	Rebotar(distance){
-		const tocarFondo = this.prefabJugador.body.touching.down
-		if(tocarFondo){
-			this.prefabJugador.play('animacionSaltar')
-			this.prefabJugador.once(Phaser.Animations.Events.ANIMATION_COMPLETE_KEY + 'animacionSaltar', () => {
-				this.prefabJugador.play('animacionGirar')
-			})
-			this.prefabJugador.once(Phaser.Animations.Events.ANIMATION_COMPLETE_KEY + 'animacionGirar', () => {
-				this.prefabJugador.play('animacionCaer')
-			})
-			this.prefabJugador.setVelocityY(-600)
-			this.jumpsNum += 1
-
-			if(!this.firstJumpMade){
-				this.firstJumpMade = true;
-				this.startingMaxHeight = distance
-			}
-
-			}
+		
 
 	}
 
