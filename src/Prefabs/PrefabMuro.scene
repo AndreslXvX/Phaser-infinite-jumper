@@ -7,7 +7,8 @@
         "importFileExtension": true,
         "preloadMethodName": "",
         "preloadPackFiles": [],
-        "createMethodName": ""
+        "createMethodName": "",
+        "borderHeight": 1200
     },
     "displayList": [
         {
@@ -20,7 +21,7 @@
             "originX": 0,
             "originY": 0,
             "width": 80,
-            "height": 600,
+            "height": 1200,
             "tileScaleX": 3,
             "tileScaleY": 3.5
         }

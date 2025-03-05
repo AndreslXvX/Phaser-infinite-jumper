@@ -7,7 +7,8 @@
         "importFileExtension": true,
         "preloadPackFiles": [],
         "createMethodName": "editorCreate",
-        "sceneKey": "Level"
+        "sceneKey": "Level",
+        "borderHeight": 800
     },
     "displayList": [
         {
@@ -153,16 +154,6 @@
             "flipY": false
         },
         {
-            "prefabId": "0ed1159f-ee3d-4ce9-82da-e76768c045b5",
-            "id": "a7c6544e-7787-4d77-94a1-f963da4cf6cd",
-            "unlock": [
-                "sceneKey"
-            ],
-            "label": "launchGameOverScene",
-            "scope": "CLASS",
-            "sceneKey": "GameOverScene"
-        },
-        {
             "prefabId": "884f45d6-b90f-4905-a987-3e9bed69c26e",
             "id": "0937aa51-7983-4ebb-b669-4ef6ae7afa24",
             "unlock": [
@@ -192,6 +183,16 @@
                     "label": "fadeEffectCameraActionScript_1"
                 }
             ]
+        },
+        {
+            "prefabId": "0ed1159f-ee3d-4ce9-82da-e76768c045b5",
+            "id": "a7c6544e-7787-4d77-94a1-f963da4cf6cd",
+            "unlock": [
+                "sceneKey"
+            ],
+            "label": "launchGameOverScene",
+            "scope": "CLASS",
+            "sceneKey": "GameOverScene"
         }
     ],
     "plainObjects": [

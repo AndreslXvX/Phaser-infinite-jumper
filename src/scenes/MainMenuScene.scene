@@ -7,7 +7,8 @@
         "importFileExtension": true,
         "preloadPackFiles": [],
         "createMethodName": "editorCreate",
-        "sceneKey": "MainMenuScene"
+        "sceneKey": "MainMenuScene",
+        "borderHeight": 1200
     },
     "displayList": [
         {
@@ -43,7 +44,7 @@
                 "key": "ground"
             },
             "x": 400,
-            "y": 552,
+            "y": 1152,
             "scaleX": 3,
             "scaleY": 3,
             "ArcadeComponent.active": true,
@@ -86,7 +87,7 @@
             "label": "prefabJugador",
             "scope": "CLASS",
             "x": 400,
-            "y": 480,
+            "y": 1080,
             "animationPreview": true,
             "allowGravity": false
         },

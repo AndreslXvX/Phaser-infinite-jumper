@@ -35,7 +35,7 @@ export default class MainMenuScene extends Phaser.Scene {
 
 		// image_1
 		/** @type {Phaser.GameObjects.Image & { body: Phaser.Physics.Arcade.Body }} */
-		const image_1 = this.add.image(400, 552, "ground");
+		const image_1 = this.add.image(400, 1152, "ground");
 		image_1.setInteractive(new Phaser.Geom.Rectangle(0, 0, 240, 32), Phaser.Geom.Rectangle.Contains);
 		image_1.scaleX = 3;
 		image_1.scaleY = 3;
@@ -57,7 +57,7 @@ export default class MainMenuScene extends Phaser.Scene {
 		rightWall_1.flipY = false;
 
 		// prefabJugador
-		const prefabJugador = new PrefabJugador(this, 400, 480);
+		const prefabJugador = new PrefabJugador(this, 400, 1080);
 		this.add.existing(prefabJugador);
 		prefabJugador.body.allowGravity = false;
 

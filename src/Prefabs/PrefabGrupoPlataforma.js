@@ -24,7 +24,7 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 			runChildUpdate: true,
 		});
 		this.UpperPlatformYPosition = 0
-		for (let i = 1; i < 5; i += 1) {
+		for (let i = 1; i < 10; i += 1) {
 			const x = Phaser.Math.Between(80, 700);
 			const y = i * (-150);
 			this.group.get(x, y)
@@ -61,7 +61,7 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 		this.playerPosition = this.scene.cameras.main.worldView.centerY
 		
 		children.forEach((child) => {
-			if(this.playerPosition <= child.y - 300 ){
+			if(this.playerPosition <= child.y - 600 ){
 				this.BottomPlatformYPosition = child.y;
 				childrenToMove.push(child);
 			}

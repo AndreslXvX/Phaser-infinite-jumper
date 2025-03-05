@@ -9,7 +9,7 @@
 export default class PrefabMuro extends Phaser.GameObjects.TileSprite {
 
 	constructor(scene, x, y, width, height, texture, frame) {
-		super(scene, x ?? 0, y ?? 0, width ?? 80, height ?? 600, texture || "wall", frame);
+		super(scene, x ?? 0, y ?? 0, width ?? 80, height ?? 1200, texture || "wall", frame);
 
 		this.setOrigin(0, 0);
 		this.tileScaleX = 3;
