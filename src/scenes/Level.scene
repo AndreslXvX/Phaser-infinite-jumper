@@ -11,6 +11,47 @@
     },
     "displayList": [
         {
+            "type": "Image",
+            "id": "0a913933-54bf-45d9-8be1-b40ba503ea0c",
+            "label": "rightButton",
+            "displayName": "Boton Derecho",
+            "scope": "CLASS",
+            "hitArea.shape": "RECTANGLE",
+            "hitArea.width": 32,
+            "hitArea.height": 32,
+            "texture": {},
+            "x": 800,
+            "scaleX": 12.5,
+            "scaleY": 18.9,
+            "originX": 1,
+            "originY": 0,
+            "alpha": 0,
+            "alphaTopLeft": 0,
+            "alphaTopRight": 0,
+            "alphaBottomLeft": 0,
+            "alphaBottomRight": 0
+        },
+        {
+            "type": "Image",
+            "id": "0a56687b-3a58-40f5-9d99-7caacf89b1e2",
+            "label": "leftButton",
+            "displayName": "Boton izquierdo",
+            "scope": "CLASS",
+            "hitArea.shape": "RECTANGLE",
+            "hitArea.width": 32,
+            "hitArea.height": 32,
+            "texture": {},
+            "scaleX": 12.5,
+            "scaleY": 18.9,
+            "originX": 0,
+            "originY": 0,
+            "alpha": 0,
+            "alphaTopLeft": 0,
+            "alphaTopRight": 0,
+            "alphaBottomLeft": 0,
+            "alphaBottomRight": 0
+        },
+        {
             "type": "Layer",
             "id": "0d6777ab-3341-47ff-83ab-a7cf9b7f0ada",
             "label": "LayerPlayer",
@@ -70,12 +111,13 @@
         {
             "type": "Image",
             "id": "8337c01a-905b-473b-a154-b6bfa8348b99",
-            "label": "image_1",
+            "label": "floorImage",
+            "scope": "CLASS",
             "hitArea.shape": "RECTANGLE",
             "hitArea.width": 240,
             "hitArea.height": 32,
             "texture": {
-                "key": "ground"
+                "key": "platform"
             },
             "x": 400,
             "y": 48,
@@ -85,9 +127,8 @@
             "allowGravity": false,
             "pushable": false,
             "immovable": true,
-            "body.width": 240,
-            "body.height": 16,
-            "body.offset.y": 16
+            "body.width": 80,
+            "body.height": 16
         },
         {
             "prefabId": "139a3f12-b9f8-4dea-a8fc-8bf5ac0452bf",
@@ -112,37 +153,24 @@
             "flipY": false
         },
         {
-            "type": "Image",
-            "id": "0a56687b-3a58-40f5-9d99-7caacf89b1e2",
-            "label": "LeftButton",
-            "displayName": "Boton izquierdo",
-            "texture": {},
-            "scaleX": 12.5,
-            "scaleY": 18.9,
-            "originX": 0,
-            "originY": 0,
-            "alpha": 0,
-            "alphaTopLeft": 0,
-            "alphaTopRight": 0,
-            "alphaBottomLeft": 0,
-            "alphaBottomRight": 0
+            "prefabId": "0ed1159f-ee3d-4ce9-82da-e76768c045b5",
+            "id": "a7c6544e-7787-4d77-94a1-f963da4cf6cd",
+            "unlock": [
+                "sceneKey"
+            ],
+            "label": "launchGameOverScene",
+            "scope": "CLASS",
+            "sceneKey": "GameOverScene"
         },
         {
-            "type": "Image",
-            "id": "0a913933-54bf-45d9-8be1-b40ba503ea0c",
-            "label": "RightButton",
-            "displayName": "Boton Derecho",
-            "texture": {},
-            "x": 800,
-            "scaleX": 12.5,
-            "scaleY": 18.9,
-            "originX": 1,
-            "originY": 0,
-            "alpha": 0,
-            "alphaTopLeft": 0,
-            "alphaTopRight": 0,
-            "alphaBottomLeft": 0,
-            "alphaBottomRight": 0
+            "prefabId": "884f45d6-b90f-4905-a987-3e9bed69c26e",
+            "id": "0937aa51-7983-4ebb-b669-4ef6ae7afa24",
+            "unlock": [
+                "sceneKey"
+            ],
+            "label": "stopUiScene",
+            "scope": "CLASS",
+            "sceneKey": "UI"
         },
         {
             "prefabId": "7bf8a19d-1211-4b59-bb38-b034085b171f",
@@ -157,48 +185,11 @@
                     ],
                     "label": "launchSceneActionScript",
                     "sceneKey": "UI"
-                }
-            ]
-        },
-        {
-            "prefabId": "34cde368-8bd4-4596-97fc-47c6825699b1",
-            "id": "69c85bce-adcb-435f-9288-2bbf1436b112",
-            "label": "timeEventActionScript",
-            "scope": "CLASS",
-            "list": [
+                },
                 {
                     "prefabId": "26d6c86f-1f9a-4dc9-9d2e-f64a7fbbbb28",
-                    "id": "4964b59d-9649-4a86-b81f-b45a430199dc",
-                    "unlock": [
-                        "fadeEvent",
-                        "duration"
-                    ],
-                    "label": "fadeEffectCameraActionScript",
-                    "scope": "CLASS",
-                    "duration": 1000,
-                    "fadeEvent": "camerafadeoutcomplete",
-                    "list": [
-                        {
-                            "prefabId": "884f45d6-b90f-4905-a987-3e9bed69c26e",
-                            "id": "0937aa51-7983-4ebb-b669-4ef6ae7afa24",
-                            "unlock": [
-                                "sceneKey"
-                            ],
-                            "label": "stopSceneActionScript",
-                            "scope": "CLASS",
-                            "sceneKey": "UI"
-                        },
-                        {
-                            "prefabId": "6b1b396b-83fa-4b7a-8360-c7e156fc0f24",
-                            "id": "5a6c497f-231c-4016-b5f6-f8abb8e18319",
-                            "unlock": [
-                                "sceneKey"
-                            ],
-                            "label": "startSceneActionScript",
-                            "scope": "CLASS",
-                            "sceneKey": "GameOverScene"
-                        }
-                    ]
+                    "id": "4603fc26-5c49-449c-8fee-98cd507d5e89",
+                    "label": "fadeEffectCameraActionScript_1"
                 }
             ]
         }
@@ -236,7 +227,7 @@
             "label": "collider",
             "scope": "LOCAL",
             "object1": "prefabJugador",
-            "object2": "image_1"
+            "object2": "floorImage"
         },
         {
             "id": "fefa018e-544e-4092-b91a-35b0841b846e",

@@ -2,6 +2,7 @@ import Level from "./scenes/Level.js";
 import Preload from "./scenes/Preload.js";
 import UI from "./scenes/UI.js";
 import GameOverScene from "./scenes/GameOverScene.js";
+import MainMenuScene from "./scenes/MainMenuScene.js";
 
 window.addEventListener('load', function () {
 
@@ -25,6 +26,7 @@ window.addEventListener('load', function () {
 	});
 
 	game.scene.add("Preload", Preload);
+	game.scene.add("MainMenuScene", MainMenuScene, true);
 	game.scene.add("Level", Level);
 	game.scene.add("UI", UI);
 	game.scene.add("GameOverScene", GameOverScene);

@@ -1,0 +1,159 @@
+{
+    "id": "e23e1538-0bd0-4947-86b3-5cd229b1f267",
+    "sceneType": "SCENE",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": true,
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "MainMenuScene"
+    },
+    "displayList": [
+        {
+            "prefabId": "dabd12e0-752f-436b-b784-ca69c9c13a07",
+            "id": "3d43cc1e-255f-4c90-a4e3-6241f0d4395c",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "backgroundPrefab",
+            "x": 0,
+            "y": 0
+        },
+        {
+            "prefabId": "1a493c91-45ce-42e2-909a-b5f8a6d3af75",
+            "id": "98b68d39-d72c-4b3a-b0ac-6d85c4ab51b7",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "middleGroundPrefab",
+            "x": 0,
+            "y": 0
+        },
+        {
+            "type": "Image",
+            "id": "25d2143f-aac5-44ad-bf6d-7a3545b4757c",
+            "label": "image_1",
+            "hitArea.shape": "RECTANGLE",
+            "hitArea.width": 240,
+            "hitArea.height": 32,
+            "texture": {
+                "key": "ground"
+            },
+            "x": 400,
+            "y": 552,
+            "scaleX": 3,
+            "scaleY": 3,
+            "ArcadeComponent.active": true,
+            "allowGravity": false,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 240,
+            "body.height": 16,
+            "body.offset.y": 16
+        },
+        {
+            "prefabId": "139a3f12-b9f8-4dea-a8fc-8bf5ac0452bf",
+            "id": "00373f22-b4eb-4c28-8d6b-f359a5442520",
+            "label": "rightWall"
+        },
+        {
+            "prefabId": "139a3f12-b9f8-4dea-a8fc-8bf5ac0452bf",
+            "id": "8422eef5-4186-4b18-b617-4cbe9784cb06",
+            "unlock": [
+                "x",
+                "y",
+                "flipX",
+                "flipY"
+            ],
+            "label": "rightWall_1",
+            "x": 720,
+            "y": 0,
+            "flipX": true,
+            "flipY": false
+        },
+        {
+            "prefabId": "bc7614c3-2987-4f5a-ae93-f5836baf564b",
+            "id": "8567855c-b0a9-4ebd-b364-b28e5ea54389",
+            "unlock": [
+                "x",
+                "y",
+                "animationPreview",
+                "allowGravity"
+            ],
+            "label": "prefabJugador",
+            "scope": "CLASS",
+            "x": 400,
+            "y": 480,
+            "animationPreview": true,
+            "allowGravity": false
+        },
+        {
+            "type": "Text",
+            "id": "89113531-ca94-4f7f-93e6-c06d57b136b4",
+            "label": "titleText",
+            "displayName": "Titulo",
+            "padding": 5,
+            "x": 176,
+            "y": 84,
+            "text": "Infinite\nJumper",
+            "align": "center",
+            "fontFamily": "PressStart2P-Regular",
+            "fontSize": "64px",
+            "color": "#ffffffff",
+            "list": [
+                {
+                    "type": "Shadow",
+                    "id": "2285df9a-f5b0-4944-9234-96cea20f57e4",
+                    "label": "shadowFx",
+                    "preFX": true
+                }
+            ]
+        },
+        {
+            "type": "Text",
+            "id": "e0ba3b60-57ff-4145-988d-aaaf8598bd3c",
+            "label": "startGameText",
+            "displayName": "Boton comenzar",
+            "scope": "CLASS",
+            "padding": 5,
+            "hitArea.shape": "RECTANGLE",
+            "hitArea.width": 532,
+            "hitArea.height": 28,
+            "x": 134,
+            "y": 278,
+            "text": "Click Para comenzar",
+            "fontFamily": "PressStart2P-Regular",
+            "fontSize": "28px",
+            "list": [
+                {
+                    "type": "Shadow",
+                    "id": "c6800c41-6e59-4c3a-85a9-bbb7a0683ff8",
+                    "label": "shadowFx_1",
+                    "preFX": true
+                }
+            ]
+        },
+        {
+            "prefabId": "7bf8a19d-1211-4b59-bb38-b034085b171f",
+            "id": "c2bd58a5-ba84-4889-b90f-ed4d504e8561",
+            "label": "onAwakeActionScript",
+            "list": [
+                {
+                    "prefabId": "26d6c86f-1f9a-4dc9-9d2e-f64a7fbbbb28",
+                    "id": "ec654655-2f12-43c0-8542-25143729cd57",
+                    "label": "fadeEffectCameraActionScript"
+                }
+            ]
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
+}

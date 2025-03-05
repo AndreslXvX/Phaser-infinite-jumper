@@ -33,6 +33,7 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 			}
 			
 		}
+		this.BottomPlatformYPosition = 0
 		
 		this.movingPlatform = false
 		/* END-USER-CTR-CODE */
