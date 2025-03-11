@@ -23,10 +23,11 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 			classType: PrefabPlataforma,
 			runChildUpdate: true,
 		});
+		this.betweenY = 300
 		this.UpperPlatformYPosition = 0
 		for (let i = 1; i < 10; i += 1) {
 			const x = Phaser.Math.Between(80, 700);
-			const y = i * (-150);
+			const y = i * (this.betweenY * -1);
 			this.group.get(x, y)
 			if(y < this.UpperPlatformYPosition){
 				this.UpperPlatformYPosition = y;
@@ -52,6 +53,8 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 	movingPlatform;
 	/**@type {number} */
 	playerPosition;
+	/**@type {number} */
+	betweenY;
 	// Write your code here.
 
 	update(){
@@ -73,7 +76,7 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 
 		childrenToMove.forEach((child) => {
 			child.x = Phaser.Math.Between(80, 700)
-			let childrenToMoveYOffset = this.UpperPlatformYPosition - 150
+			let childrenToMoveYOffset = this.UpperPlatformYPosition - this.betweenY
 			child.y = childrenToMoveYOffset;
 			// if(Phaser.Math.RND.between(0,1) === 1 ){
 			// 	child.startMovingPlatform()

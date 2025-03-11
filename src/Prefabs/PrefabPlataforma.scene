@@ -17,18 +17,19 @@
             "hitArea.width": 80,
             "hitArea.height": 16,
             "texture": {
-                "key": "platform"
+                "key": "Plataforma-1"
             },
-            "scaleX": 1.5,
-            "scaleY": 1.5,
+            "scaleX": 0.2,
+            "scaleY": 0.2,
             "allowGravity": false,
             "down": false,
             "left": false,
             "right": false,
             "pushable": false,
             "immovable": true,
-            "body.width": 80,
-            "body.height": 16
+            "body.width": 807,
+            "body.height": 151,
+            "body.offset.y": 50
         }
     ],
     "plainObjects": [],

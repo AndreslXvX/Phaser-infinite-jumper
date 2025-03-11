@@ -3,7 +3,6 @@
 
 /* START OF COMPILED CODE */
 
-import BackgroundPrefab from "../Prefabs/BackgroundPrefab.js";
 import MiddleGroundPrefab from "../Prefabs/MiddleGroundPrefab.js";
 import PrefabJugador from "../Prefabs/PrefabJugador.js";
 import PrefabGrupoPlataforma from "../Prefabs/PrefabGrupoPlataforma.js";
@@ -61,10 +60,6 @@ export default class Level extends Phaser.Scene {
 		// LayerPlayer
 		const layerPlayer = this.add.layer();
 		layerPlayer.blendMode = Phaser.BlendModes.SKIP_CHECK;
-
-		// backgroundPrefab
-		const backgroundPrefab = new BackgroundPrefab(this, 0, 0);
-		layerPlayer.add(backgroundPrefab);
 
 		// middleGroundPrefab
 		const middleGroundPrefab = new MiddleGroundPrefab(this, 0, 0);
@@ -247,7 +242,7 @@ export default class Level extends Phaser.Scene {
 			this.prefabJugador.once(Phaser.Animations.Events.ANIMATION_COMPLETE_KEY + 'animacionGirar', () => {
 				this.prefabJugador.play('animacionCaer')
 			})
-			this.prefabJugador.setVelocityY(-600)
+			this.prefabJugador.setVelocityY(-800)
 			this.jumpsNum += 1
 
 			if(!this.firstJumpMade){
@@ -303,10 +298,10 @@ export default class Level extends Phaser.Scene {
 
 
 		this.movingWallsTileSprites.forEach((tileSprite) => {
-			tileSprite.tilePositionY = this.prefabJugador.y / 3.5 + (tileSprite.tileOffsetY || 0)
+			tileSprite.tilePositionY = this.prefabJugador.y  + (tileSprite.tileOffsetY || 0)
 		});
 		this.movingMiddleGround.forEach((tileSprite) => {
-			tileSprite.tilePositionY = this.prefabJugador.y / 7
+			tileSprite.tilePositionY = this.prefabJugador.y * 0.2
 		});
 
 		if(distance > this.maxHeight && this.firstJumpMade){

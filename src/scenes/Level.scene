@@ -59,17 +59,6 @@
             "blendMode": -1,
             "list": [
                 {
-                    "prefabId": "dabd12e0-752f-436b-b784-ca69c9c13a07",
-                    "id": "43870d65-381b-4c29-90f8-6c2e7882581d",
-                    "unlock": [
-                        "x",
-                        "y"
-                    ],
-                    "label": "backgroundPrefab",
-                    "x": 0,
-                    "y": 0
-                },
-                {
                     "prefabId": "1a493c91-45ce-42e2-909a-b5f8a6d3af75",
                     "id": "b70f386f-0909-4452-bdf6-6bdf2b5b4132",
                     "unlock": [

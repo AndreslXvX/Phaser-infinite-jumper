@@ -9,11 +9,9 @@
 export default class BackgroundPrefab extends Phaser.GameObjects.TileSprite {
 
 	constructor(scene, x, y, width, height, texture, frame) {
-		super(scene, x ?? 0, y ?? 0, width ?? 800, height ?? 1200, texture || "background", frame);
+		super(scene, x ?? 0, y ?? 0, width ?? 800, height ?? 1200, texture || "Escenario", frame);
 
 		this.setOrigin(0, 0);
-		this.tileScaleX = 7;
-		this.tileScaleY = 6.5;
 
 		/* START-USER-CTR-CODE */
 		this.setScrollFactor(1,0)

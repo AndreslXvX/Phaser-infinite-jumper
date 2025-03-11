@@ -15,7 +15,6 @@ window.addEventListener('load', function () {
 			mode: Phaser.Scale.FIT,
 			autoCenter: Phaser.Scale.CENTER_BOTH
 		},
-		pixelArt: true,
 		physics: {
 			default: 'arcade',
 			arcade: {
@@ -23,6 +22,7 @@ window.addEventListener('load', function () {
 				}
 				
 		}
+		
 	});
 
 	game.scene.add("Preload", Preload);

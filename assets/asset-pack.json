@@ -17,6 +17,11 @@
                 "type": "image"
             },
             {
+                "url": "assets/Juego-20250310T224445Z-001/Juego/Escenario.png",
+                "type": "image",
+                "key": "Escenario"
+            },
+            {
                 "url": "assets/metroid_infinite_jumper/assets/other/ground.png",
                 "type": "image",
                 "key": "ground"
@@ -25,6 +30,41 @@
                 "url": "assets/metroid_infinite_jumper/assets/background/middleground-no-fungus.png",
                 "type": "image",
                 "key": "middleground-no-fungus"
+            },
+            {
+                "url": "assets/Juego-20250310T224445Z-001/Juego/Pared-der.png",
+                "type": "image",
+                "key": "Pared-der"
+            },
+            {
+                "url": "assets/Juego-20250310T224445Z-001/Juego/Pared-izq.png",
+                "type": "image",
+                "key": "Pared-izq"
+            },
+            {
+                "url": "assets/Juego-20250310T224445Z-001/Juego/Plataforma-1.png",
+                "type": "image",
+                "key": "Plataforma-1"
+            },
+            {
+                "url": "assets/Juego-20250310T224445Z-001/Juego/Plataforma-2.png",
+                "type": "image",
+                "key": "Plataforma-2"
+            },
+            {
+                "url": "assets/Juego-20250310T224445Z-001/Juego/Plataforma-3.png",
+                "type": "image",
+                "key": "Plataforma-3"
+            },
+            {
+                "url": "assets/Juego-20250310T224445Z-001/Juego/Plataforma-4.png",
+                "type": "image",
+                "key": "Plataforma-4"
+            },
+            {
+                "url": "assets/Juego-20250310T224445Z-001/Juego/Plataforma-5.png",
+                "type": "image",
+                "key": "Plataforma-5"
             },
             {
                 "url": "assets/metroid_infinite_jumper/assets/other/platform.png",

@@ -15,14 +15,12 @@
             "id": "39a4253c-4e6c-4af0-8042-741ed2ed8d99",
             "label": "tilesprite_1",
             "texture": {
-                "key": "background"
+                "key": "Escenario"
             },
             "originX": 0,
             "originY": 0,
             "width": 800,
-            "height": 1200,
-            "tileScaleX": 7,
-            "tileScaleY": 6.5
+            "height": 1200
         }
     ],
     "plainObjects": [],

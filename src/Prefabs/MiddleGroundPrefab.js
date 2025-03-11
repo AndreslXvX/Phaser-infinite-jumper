@@ -9,11 +9,10 @@
 export default class MiddleGroundPrefab extends Phaser.GameObjects.TileSprite {
 
 	constructor(scene, x, y, width, height, texture, frame) {
-		super(scene, x ?? 0, y ?? 0, width ?? 800, height ?? 1200, texture || "middleground-no-fungus", frame);
+		super(scene, x ?? 0, y ?? 0, width ?? 800, height ?? 1200, texture || "Escenario", frame);
 
 		this.setOrigin(0, 0);
-		this.tileScaleX = 3;
-		this.tileScaleY = 3;
+		this.tileScaleY = 0.95;
 
 		/* START-USER-CTR-CODE */
 		this.setScrollFactor(1,0)
