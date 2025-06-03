@@ -62,6 +62,8 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 		const childrenToMove = [];
 		this.maxPlatformDistance = this.scene.cameras.main.worldView.centerY * 5
 		this.playerPosition = this.scene.cameras.main.worldView.centerY
+
+		
 		
 		children.forEach((child) => {
 			if(this.playerPosition <= child.y - 600 ){
@@ -71,6 +73,13 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 			if(child.y < this.UpperPlatformYPosition){
 				this.UpperPlatformYPosition = child.y;
 			}
+
+			if(child.x >= 680) {
+					child.body.velocity.x = -400
+
+				} else if(child.x <= 130) {
+					child.body.velocity.x = 400
+				}
 			
 		})
 
@@ -78,6 +87,7 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 			child.x = Phaser.Math.Between(80, 700)
 			let childrenToMoveYOffset = this.UpperPlatformYPosition - this.betweenY
 			child.y = childrenToMoveYOffset;
+			child.moverPlataforma(4000)
 			// if(Phaser.Math.RND.between(0,1) === 1 ){
 			// 	child.startMovingPlatform()
 			// } else {

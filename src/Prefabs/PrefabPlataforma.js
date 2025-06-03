@@ -25,6 +25,7 @@ export default class PrefabPlataforma extends Phaser.Physics.Arcade.Image {
 		this.body.setSize(807, 151, false);
 
 		/* START-USER-CTR-CODE */
+
 		this.platformTexture = Phaser.Math.Between(1, 5);
 
 		if(this.platformTexture == 1){
@@ -49,10 +50,7 @@ export default class PrefabPlataforma extends Phaser.Physics.Arcade.Image {
 				break
 					case(5): this.platformTexture = "Plataforma-5"
 				break
-
 		}
-
-
 		this.setTexture(this.platformTexture)
 		this.randomVelo = Phaser.Math.RND.between(0, 1);
 		switch(this.randomVelo) {
@@ -62,58 +60,22 @@ export default class PrefabPlataforma extends Phaser.Physics.Arcade.Image {
 			break
 		}
 		this.body.velocity.x = this.horizontalVelocity;
-		this.minXPosition = 130;
-		this.maxXPosition = 680;
+		// this.minXPosition = 130;
+		// this.maxXPosition = 680;
 		this.enableMovingPlatform = true
 
 		// Write your code here.
 		/* END-USER-CTR-CODE */
 	}
-
 	/* START-USER-CODE */
 
-
-	horizontalVelocity;
-	minXPosition;
-	maxXPosition;
-	enableMovingPlatform;
-	randomVelo;
-
-
 	update(){
-		if(!this.enableMovingPlatform){
-			return
-		}
-		this.MovingPlatform()
-
+		
 	}
-	// startMovingPlatform(){
-	// 	this.enableMovingPlatform = true
-	// }
-	MovingPlatform(){
-		const velocity = this.body.velocity;
-		switch(this.randomVelo) {
-				case(0): 
-				if(this.x >= this.maxXPosition) {
-					velocity.x = this.horizontalVelocity * -1;
-				} else if(this.x <= this.minXPosition) {
-					velocity.x = this.horizontalVelocity;
-				}
-			break
-				case(1): 
-				if(this.x >= this.maxXPosition) {
-					velocity.x = this.horizontalVelocity;
-				} else if(this.x <= this.minXPosition) {
-					velocity.x = this.horizontalVelocity * -1;
-				}
-			break
-		}
-	}
-	// stopMovingPlatform(){
-	// 	this.enableMovingPlatform = false
-	// 	this.body.velocity.x = 0
-	// }
 
+	moverPlataforma(velocidad){
+		this.body.velocity.x = velocidad
+	}
 	// Write your code here.
 	/* END-USER-CODE */
 }
