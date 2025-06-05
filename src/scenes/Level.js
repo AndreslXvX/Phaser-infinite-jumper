@@ -277,10 +277,10 @@ export default class Level extends Phaser.Scene {
 		if(pointer.isDown){
 		if(pointer.x < this.cameras.main.centerX){
 			this.prefabJugador.setFlipX(true)
-			console.log(this.prefabJugador.setVelocityX(-400))
+			this.prefabJugador.setVelocityX(-400)
 		} else if (pointer.x > this.cameras.main.centerX){
 			this.prefabJugador.setFlipX(false)
-			console.log(this.prefabJugador.setVelocityX(400))
+			this.prefabJugador.setVelocityX(400)
 		}
 		}
 	}
