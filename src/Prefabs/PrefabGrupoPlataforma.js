@@ -21,22 +21,24 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 		const _scene = scene
 		this.group = _scene.add.group ({
 			classType: PrefabPlataforma,
-			runChildUpdate: true,
+			//runChildUpdate: true
 		});
 		this.betweenY = 300
 		this.UpperPlatformYPosition = 0
+		this.velocidadPlataforma = 400
+		this.minX = 180
+		this.maxX = 620
+
 		for (let i = 1; i < 10; i += 1) {
-			const x = Phaser.Math.Between(80, 700);
+			const x = Phaser.Math.RND.between(this.minX, this.maxX);
 			const y = i * (this.betweenY * -1);
 			this.group.get(x, y)
 			if(y < this.UpperPlatformYPosition){
 				this.UpperPlatformYPosition = y;
 			}
-			
 		}
 		this.BottomPlatformYPosition = 0
-		
-		this.movingPlatform = false
+
 		/* END-USER-CTR-CODE */
 	}
 
@@ -63,8 +65,6 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 		this.maxPlatformDistance = this.scene.cameras.main.worldView.centerY * 5
 		this.playerPosition = this.scene.cameras.main.worldView.centerY
 
-		
-		
 		children.forEach((child) => {
 			if(this.playerPosition <= child.y - 600 ){
 				this.BottomPlatformYPosition = child.y;
@@ -74,25 +74,26 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 				this.UpperPlatformYPosition = child.y;
 			}
 
-			if(child.x >= 680) {
-					child.body.velocity.x = -400
+			if(child.x >= this.maxX) {
+					child.body.velocity.x = this.velocidadPlataforma * -1
 
-				} else if(child.x <= 130) {
-					child.body.velocity.x = 400
+				} else if(child.x <= this.minX) {
+					child.body.velocity.x = this.velocidadPlataforma
 				}
 			
 		})
 
 		childrenToMove.forEach((child) => {
-			child.x = Phaser.Math.Between(80, 700)
+			child.x = Phaser.Math.Between(this.minX, this.maxX)
 			let childrenToMoveYOffset = this.UpperPlatformYPosition - this.betweenY
 			child.y = childrenToMoveYOffset;
-			child.moverPlataforma(4000)
-			// if(Phaser.Math.RND.between(0,1) === 1 ){
-			// 	child.startMovingPlatform()
-			// } else {
-			// 	child.stopMovingPlatform()
-			// }
+
+			if(Phaser.Math.RND.between(0,1) == 1){
+				if(Phaser.Math.RND.between(0,1) == 1){child.moverPlataforma(this.velocidadPlataforma)} 
+				else {child.moverPlataforma(this.velocidadPlataforma * -1)}
+			} else {
+				child.moverPlataforma(0)
+			}
 			
 		})
 

@@ -4,12 +4,12 @@
 /* START OF COMPILED CODE */
 
 import MiddleGroundPrefab from "../Prefabs/MiddleGroundPrefab.js";
-import PrefabJugador from "../Prefabs/PrefabJugador.js";
 import PrefabGrupoPlataforma from "../Prefabs/PrefabGrupoPlataforma.js";
 import PrefabMuro from "../Prefabs/PrefabMuro.js";
+import PrefabJugador from "../Prefabs/PrefabJugador.js";
+import LaunchSceneActionScript from "../scriptnodes/scene/LaunchSceneActionScript.js";
 import StopSceneActionScript from "../scriptnodes/scene/StopSceneActionScript.js";
 import OnAwakeActionScript from "../scriptnodes/utils/OnAwakeActionScript.js";
-import LaunchSceneActionScript from "../scriptnodes/scene/LaunchSceneActionScript.js";
 import FadeEffectCameraActionScript from "../scriptnodes/camera/FadeEffectCameraActionScript.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
@@ -57,25 +57,13 @@ export default class Level extends Phaser.Scene {
 		leftButton.alphaBottomLeft = 0;
 		leftButton.alphaBottomRight = 0;
 
-		// LayerPlayer
-		const layerPlayer = this.add.layer();
-		layerPlayer.blendMode = Phaser.BlendModes.SKIP_CHECK;
-
 		// middleGroundPrefab
 		const middleGroundPrefab = new MiddleGroundPrefab(this, 0, 0);
-		layerPlayer.add(middleGroundPrefab);
-
-		// prefabJugador
-		const prefabJugador = new PrefabJugador(this, 400, -80);
-		layerPlayer.add(prefabJugador);
+		this.add.existing(middleGroundPrefab);
 
 		// prefabGrupoPlataforma
 		const prefabGrupoPlataforma = new PrefabGrupoPlataforma(this);
 		this.add.existing(prefabGrupoPlataforma);
-
-		// LayerLevel
-		const layerLevel = this.add.layer();
-		layerLevel.blendMode = Phaser.BlendModes.SKIP_CHECK;
 
 		// floorImage
 		/** @type {Phaser.GameObjects.Image & { body: Phaser.Physics.Arcade.Body }} */
@@ -99,6 +87,27 @@ export default class Level extends Phaser.Scene {
 		prefabMuro_1.flipX = true;
 		prefabMuro_1.flipY = false;
 
+		// prefabJugador
+		const prefabJugador = new PrefabJugador(this, 400, -80);
+		this.add.existing(prefabJugador);
+
+		// arcadesprite_1
+		const arcadesprite_1 = this.physics.add.sprite(400, 448, "_MISSING");
+		arcadesprite_1.scaleX = 28.8756324487649;
+		arcadesprite_1.scaleY = 0.7238394071780956;
+		arcadesprite_1.tintFill = true;
+		arcadesprite_1.body.velocity.y = -200;
+		arcadesprite_1.body.allowGravity = false;
+		arcadesprite_1.body.checkCollision.down = false;
+		arcadesprite_1.body.checkCollision.left = false;
+		arcadesprite_1.body.checkCollision.right = false;
+		arcadesprite_1.body.pushable = false;
+		arcadesprite_1.body.immovable = true;
+		arcadesprite_1.body.setSize(32, 32, false);
+
+		// launchGameOverScene
+		const launchGameOverScene = new LaunchSceneActionScript(this);
+
 		// stopUiScene
 		const stopUiScene = new StopSceneActionScript(this);
 
@@ -111,14 +120,10 @@ export default class Level extends Phaser.Scene {
 		// fadeEffectCameraActionScript_1
 		new FadeEffectCameraActionScript(onAwakeActionScript);
 
-		// launchGameOverScene
-		const launchGameOverScene = new LaunchSceneActionScript(this);
-
 		// lists
 		const walls = [prefabMuro_1, rightWall];
 		const movingWallsTileSprites = [prefabMuro_1, rightWall];
 		const wallsBody = [prefabMuro_1, rightWall];
-		const platforms = [];
 		const movingMiddleGround = [middleGroundPrefab];
 
 		// colliderPlayerPlatform
@@ -136,22 +141,22 @@ export default class Level extends Phaser.Scene {
 		// prefabMuro_1 (prefab fields)
 		prefabMuro_1.tileOffsetY = -120;
 
+		// launchGameOverScene (prefab fields)
+		launchGameOverScene.sceneKey = "GameOverScene";
+
 		// stopUiScene (prefab fields)
 		stopUiScene.sceneKey = "UI";
 
 		// launchSceneActionScript (prefab fields)
 		launchSceneActionScript.sceneKey = "UI";
 
-		// launchGameOverScene (prefab fields)
-		launchGameOverScene.sceneKey = "GameOverScene";
-
 		this.rightButton = rightButton;
 		this.leftButton = leftButton;
-		this.prefabJugador = prefabJugador;
 		this.prefabGrupoPlataforma = prefabGrupoPlataforma;
 		this.floorImage = floorImage;
-		this.stopUiScene = stopUiScene;
+		this.prefabJugador = prefabJugador;
 		this.launchGameOverScene = launchGameOverScene;
+		this.stopUiScene = stopUiScene;
 		this.teclado_A = teclado_A;
 		this.teclado_D = teclado_D;
 		this.colliderPlayerPlatform = colliderPlayerPlatform;
@@ -159,7 +164,6 @@ export default class Level extends Phaser.Scene {
 		this.walls = walls;
 		this.movingWallsTileSprites = movingWallsTileSprites;
 		this.wallsBody = wallsBody;
-		this.platforms = platforms;
 		this.movingMiddleGround = movingMiddleGround;
 
 		this.events.emit("scene-awake");
@@ -169,16 +173,16 @@ export default class Level extends Phaser.Scene {
 	rightButton;
 	/** @type {Phaser.GameObjects.Image} */
 	leftButton;
-	/** @type {PrefabJugador} */
-	prefabJugador;
 	/** @type {PrefabGrupoPlataforma} */
 	prefabGrupoPlataforma;
 	/** @type {Phaser.GameObjects.Image & { body: Phaser.Physics.Arcade.Body }} */
 	floorImage;
-	/** @type {StopSceneActionScript} */
-	stopUiScene;
+	/** @type {PrefabJugador} */
+	prefabJugador;
 	/** @type {LaunchSceneActionScript} */
 	launchGameOverScene;
+	/** @type {StopSceneActionScript} */
+	stopUiScene;
 	/** @type {Phaser.Input.Keyboard.Key} */
 	teclado_A;
 	/** @type {Phaser.Input.Keyboard.Key} */
@@ -193,22 +197,19 @@ export default class Level extends Phaser.Scene {
 	movingWallsTileSprites;
 	/** @type {PrefabMuro[]} */
 	wallsBody;
-	/** @type {Array<any>} */
-	platforms;
 	/** @type {MiddleGroundPrefab[]} */
 	movingMiddleGround;
 
 	/* START-USER-CODE */
-	isGameOver = false
-	currentScore = 0
-	maxHeight = 0
-	startingMaxHeight = 0
+	// Write more your code here
+
+	isGameOver = false;
+	currentScore = 0;
+	maxHeight = 0;
+	startingMaxHeight = 0;
 	cameraYposition;
 	setoffsetY;
 	jumpsNum;
-
-
-	// Write more your code here
 
 	create() {
 		this.editorCreate();
@@ -222,11 +223,10 @@ export default class Level extends Phaser.Scene {
 		this.setoffsetY = 0
 		this.jumpsNum = 0
 
-
 	}
 
 	update(){
-
+		this.prefabGrupoPlataforma.update(); 
 
 		const pointer = this.input.activePointer;
 
@@ -242,7 +242,8 @@ export default class Level extends Phaser.Scene {
 			this.prefabJugador.once(Phaser.Animations.Events.ANIMATION_COMPLETE_KEY + 'animacionGirar', () => {
 				this.prefabJugador.play('animacionCaer')
 			})
-			this.prefabJugador.setVelocityY(-800)
+			this.prefabJugador.setVelocityY(-930)
+			this.prefabJugador.setGravityY(400)
 			this.jumpsNum += 1
 
 			if(!this.firstJumpMade){
@@ -283,6 +284,7 @@ export default class Level extends Phaser.Scene {
 			this.prefabJugador.setVelocityX(400)
 		}
 		}
+
 	}
 
 
@@ -326,14 +328,13 @@ export default class Level extends Phaser.Scene {
 				progress: 1,
 				duration: 3000,
 				onComplete: () => {
-					console.log('leprechaun')
 					this.registry.set('score', Math.floor(this.currentScore / 10));
 					this.stopUiScene.execute()
 					this.launchGameOverScene.execute()
 				},
         });
 		}
-		this.prefabGrupoPlataforma.update(); 
+
 	}
 
 	/* END-USER-CODE */

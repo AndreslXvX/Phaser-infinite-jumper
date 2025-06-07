@@ -8,7 +8,7 @@
         "preloadPackFiles": [],
         "createMethodName": "editorCreate",
         "sceneKey": "Level",
-        "borderHeight": 800
+        "borderHeight": 1200
     },
     "displayList": [
         {
@@ -53,50 +53,21 @@
             "alphaBottomRight": 0
         },
         {
-            "type": "Layer",
-            "id": "0d6777ab-3341-47ff-83ab-a7cf9b7f0ada",
-            "label": "LayerPlayer",
-            "blendMode": -1,
-            "list": [
-                {
-                    "prefabId": "1a493c91-45ce-42e2-909a-b5f8a6d3af75",
-                    "id": "b70f386f-0909-4452-bdf6-6bdf2b5b4132",
-                    "unlock": [
-                        "x",
-                        "y"
-                    ],
-                    "label": "middleGroundPrefab",
-                    "x": 0,
-                    "y": 0
-                },
-                {
-                    "prefabId": "bc7614c3-2987-4f5a-ae93-f5836baf564b",
-                    "id": "f555b34d-035d-42b9-be6e-cb45fcdb7b63",
-                    "unlock": [
-                        "x",
-                        "y",
-                        "animationPreview"
-                    ],
-                    "label": "prefabJugador",
-                    "scope": "CLASS",
-                    "x": 400,
-                    "y": -80,
-                    "animationPreview": true
-                }
-            ]
+            "prefabId": "1a493c91-45ce-42e2-909a-b5f8a6d3af75",
+            "id": "b70f386f-0909-4452-bdf6-6bdf2b5b4132",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "middleGroundPrefab",
+            "x": 0,
+            "y": 0
         },
         {
             "prefabId": "9393e6a7-d3c8-40df-9c00-0b71c54d9755",
             "id": "8494902a-7a54-4b25-9fab-dafae8356f39",
             "label": "prefabGrupoPlataforma",
             "scope": "CLASS"
-        },
-        {
-            "type": "Layer",
-            "id": "bda43078-4602-4c24-8dc0-7fda3d2a13ee",
-            "label": "LayerLevel",
-            "displayName": "LayerLevel",
-            "blendMode": -1
         },
         {
             "type": "Image",
@@ -143,6 +114,50 @@
             "flipY": false
         },
         {
+            "prefabId": "bc7614c3-2987-4f5a-ae93-f5836baf564b",
+            "id": "f555b34d-035d-42b9-be6e-cb45fcdb7b63",
+            "unlock": [
+                "x",
+                "y",
+                "animationPreview"
+            ],
+            "label": "prefabJugador",
+            "scope": "CLASS",
+            "x": 400,
+            "y": -80,
+            "animationPreview": true
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "48cbd27a-d039-4dec-971d-3745ffa719bd",
+            "label": "arcadesprite_1",
+            "texture": {},
+            "x": 400,
+            "y": 448,
+            "scaleX": 28.8756324487649,
+            "scaleY": 0.7238394071780956,
+            "tintFill": true,
+            "body.velocity.y": -200,
+            "allowGravity": false,
+            "down": false,
+            "left": false,
+            "right": false,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 32,
+            "body.height": 32
+        },
+        {
+            "prefabId": "0ed1159f-ee3d-4ce9-82da-e76768c045b5",
+            "id": "a7c6544e-7787-4d77-94a1-f963da4cf6cd",
+            "unlock": [
+                "sceneKey"
+            ],
+            "label": "launchGameOverScene",
+            "scope": "CLASS",
+            "sceneKey": "GameOverScene"
+        },
+        {
             "prefabId": "884f45d6-b90f-4905-a987-3e9bed69c26e",
             "id": "0937aa51-7983-4ebb-b669-4ef6ae7afa24",
             "unlock": [
@@ -172,16 +187,6 @@
                     "label": "fadeEffectCameraActionScript_1"
                 }
             ]
-        },
-        {
-            "prefabId": "0ed1159f-ee3d-4ce9-82da-e76768c045b5",
-            "id": "a7c6544e-7787-4d77-94a1-f963da4cf6cd",
-            "unlock": [
-                "sceneKey"
-            ],
-            "label": "launchGameOverScene",
-            "scope": "CLASS",
-            "sceneKey": "GameOverScene"
         }
     ],
     "plainObjects": [
@@ -264,10 +269,6 @@
                 "52df6e4b-2073-4642-b4ce-0023e4109e3c",
                 "ed53300d-af08-49af-8466-8661a2925fef"
             ]
-        },
-        {
-            "id": "a9ac186e-0b48-468c-9b61-eb1970bee87c",
-            "label": "Platforms"
         },
         {
             "id": "eea62902-28e8-458f-8ec8-8ea285d90a6e",

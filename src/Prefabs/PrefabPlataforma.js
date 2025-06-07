@@ -52,17 +52,16 @@ export default class PrefabPlataforma extends Phaser.Physics.Arcade.Image {
 				break
 		}
 		this.setTexture(this.platformTexture)
-		this.randomVelo = Phaser.Math.RND.between(0, 1);
-		switch(this.randomVelo) {
-				case(0): this.horizontalVelocity = 400;
-			break
-				case(1): this.horizontalVelocity = -400;
-			break
-		}
-		this.body.velocity.x = this.horizontalVelocity;
-		// this.minXPosition = 130;
-		// this.maxXPosition = 680;
-		this.enableMovingPlatform = true
+		// this.randomVelo = Phaser.Math.RND.between(0, 1);
+		// switch(this.randomVelo) {
+		// 		case(0): this.horizontalVelocity = 400;
+		// 	break
+		// 		case(1): this.horizontalVelocity = -400;
+		// 	break
+		// }
+		// this.body.velocity.x = this.horizontalVelocity;
+
+		
 
 		// Write your code here.
 		/* END-USER-CTR-CODE */
@@ -71,14 +70,14 @@ export default class PrefabPlataforma extends Phaser.Physics.Arcade.Image {
 
 	update(){
 		
-	}
+	};
 
 	moverPlataforma(velocidad){
 		this.body.velocity.x = velocidad
-	}
+	};
 	// Write your code here.
 	/* END-USER-CODE */
-}
+};
 
 /* END OF COMPILED CODE */
 
