@@ -20,7 +20,7 @@ export default class UI extends Phaser.Scene {
 	editorCreate() {
 
 		// scoreText
-		const scoreText = this.add.text(780, 1130, "", {});
+		const scoreText = this.add.text(780, 15, "", {});
 		scoreText.scaleX = 3;
 		scoreText.scaleY = 3;
 		scoreText.setOrigin(1, 0);

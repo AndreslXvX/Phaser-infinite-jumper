@@ -91,20 +91,6 @@ export default class Level extends Phaser.Scene {
 		const prefabJugador = new PrefabJugador(this, 400, -80);
 		this.add.existing(prefabJugador);
 
-		// arcadesprite_1
-		const arcadesprite_1 = this.physics.add.sprite(400, 448, "_MISSING");
-		arcadesprite_1.scaleX = 28.8756324487649;
-		arcadesprite_1.scaleY = 0.7238394071780956;
-		arcadesprite_1.tintFill = true;
-		arcadesprite_1.body.velocity.y = -200;
-		arcadesprite_1.body.allowGravity = false;
-		arcadesprite_1.body.checkCollision.down = false;
-		arcadesprite_1.body.checkCollision.left = false;
-		arcadesprite_1.body.checkCollision.right = false;
-		arcadesprite_1.body.pushable = false;
-		arcadesprite_1.body.immovable = true;
-		arcadesprite_1.body.setSize(32, 32, false);
-
 		// launchGameOverScene
 		const launchGameOverScene = new LaunchSceneActionScript(this);
 
@@ -213,7 +199,7 @@ export default class Level extends Phaser.Scene {
 
 	create() {
 		this.editorCreate();
-		this.cameras.main.startFollow(this.prefabJugador, true);
+		this.cameras.main.startFollow(this.prefabJugador, true, 1, 1, 0, 200);
 		this.cameras.main.setDeadzone(this.scale.width)
 		this.isGameOver = false
 		this.currentScore = 0
@@ -226,46 +212,23 @@ export default class Level extends Phaser.Scene {
 	}
 
 	update(){
-		this.prefabGrupoPlataforma.update(); 
 
 		const pointer = this.input.activePointer;
+		const distance = Math.floor(Math.abs(this.prefabJugador.body.bottom));
 
+		this.ActualizarSpritesMuros();
+		this.GameOver();
 
+		this.MovimientoJugador(pointer);
+		this.Saltojugador();
+		this.ActualizarPuntos(distance, distance);
 
-		const distance = Math.floor(Math.abs(this.prefabJugador.body.bottom))
-		const tocarFondo = this.prefabJugador.body.touching.down
-		if(tocarFondo){
-			this.prefabJugador.play('animacionSaltar')
-			this.prefabJugador.once(Phaser.Animations.Events.ANIMATION_COMPLETE_KEY + 'animacionSaltar', () => {
-				this.prefabJugador.play('animacionGirar')
-			})
-			this.prefabJugador.once(Phaser.Animations.Events.ANIMATION_COMPLETE_KEY + 'animacionGirar', () => {
-				this.prefabJugador.play('animacionCaer')
-			})
-			this.prefabJugador.setVelocityY(-930)
-			this.prefabJugador.setGravityY(400)
-			this.jumpsNum += 1
+		this.prefabGrupoPlataforma.update();
 
-			if(!this.firstJumpMade){
-				this.firstJumpMade = true;
-				this.startingMaxHeight = distance
-			}
-		}
+	}
 
-
-
-
-		this.setoffsetY = Math.floor(this.cameras.main.worldView.y)
-		this.wallsBody.forEach((tileSprite) => {
-			if(tileSprite.flipX){
-			tileSprite.body.setOffset(15, this.setoffsetY)
-			} else {
-			tileSprite.body.setOffset(0, this.setoffsetY)
-			}
-		})
-
-
-	if(!this.isGameOver){
+	MovimientoJugador(pointer){
+		if(!this.isGameOver){
 		if(this.teclado_A.isDown){
 			this.prefabJugador.setFlipX(true)
 			this.prefabJugador.setVelocityX(-400)
@@ -283,38 +246,60 @@ export default class Level extends Phaser.Scene {
 			this.prefabJugador.setFlipX(false)
 			this.prefabJugador.setVelocityX(400)
 		}
-		}
+	    }
 
 	}
+	}
 
+	Saltojugador(){
+		
+		const tocarFondo = this.prefabJugador.body.touching.down;
+		if(tocarFondo){
+			this.prefabJugador.play('animacionSaltar')
+			this.prefabJugador.once(Phaser.Animations.Events.ANIMATION_COMPLETE_KEY + 'animacionSaltar', () => {
+				this.prefabJugador.play('animacionGirar')
+			})
+			this.prefabJugador.once(Phaser.Animations.Events.ANIMATION_COMPLETE_KEY + 'animacionGirar', () => {
+				this.prefabJugador.play('animacionCaer')
+			})
+			this.prefabJugador.setVelocityY(-930)
+			this.prefabJugador.setGravityY(400)
+			this.jumpsNum += 1
+		}
+	}
 
-	// this.input.keyboard.on('keyup', () => {this.prefabJugador.setVelocityX(0)} );
-	// this.leftButton.on('pointerdown', () => 
-	// {this.prefabJugador.setFlipX(true)
-	// this.prefabJugador.setVelocityX(-400)});
-	// this.rightButton.on('pointerdown', () => 
-	// {this.prefabJugador.setFlipX(false)
-	// this.prefabJugador.setVelocityX(400)})
-	// this.leftButton.on('pointerout', () => {this.prefabJugador.setVelocityX(0)});
-	// this.rightButton.on('pointerout', () => {this.prefabJugador.setVelocityX(0)})
-
-
+	ActualizarPuntos(distancia){
+		if(!this.firstJumpMade){
+				this.firstJumpMade = true;
+				this.startingMaxHeight = distancia
+			}
+		if(distancia > this.maxHeight && this.firstJumpMade){
+			this.maxHeight = distancia;
+			this.currentScore = this.maxHeight - this.startingMaxHeight;
+			this.scene.get("UI").updateScoreText(Math.floor(this.currentScore / 10))
+		}
+	}
+	ActualizarSpritesMuros(){
 		this.movingWallsTileSprites.forEach((tileSprite) => {
 			tileSprite.tilePositionY = this.prefabJugador.y  + (tileSprite.tileOffsetY || 0)
 		});
 		this.movingMiddleGround.forEach((tileSprite) => {
 			tileSprite.tilePositionY = this.prefabJugador.y * 0.2
 		});
+		this.setoffsetY = Math.floor(this.cameras.main.worldView.y)
+		this.wallsBody.forEach((tileSprite) => {
+			if(tileSprite.flipX){
+			tileSprite.body.setOffset(0, this.setoffsetY)
+			} else {
+			tileSprite.body.setOffset(0, this.setoffsetY)
+			}
+		})
 
-		if(distance > this.maxHeight && this.firstJumpMade){
-			this.maxHeight = distance;
-			this.currentScore = this.maxHeight - this.startingMaxHeight;
-			this.scene.get("UI").updateScoreText(Math.floor(this.currentScore / 10))
-		}
+	}
 
+	GameOver(){
 		if(this.isGameOver){
-			this.prefabJugador.setVelocityY(15)
-			this.floorImage.destroy(true)
+			this.prefabJugador.setVelocityY(15);
 			return
 		}
 
@@ -327,14 +312,13 @@ export default class Level extends Phaser.Scene {
 				targets: fx,
 				progress: 1,
 				duration: 3000,
-				onComplete: () => {
-					this.registry.set('score', Math.floor(this.currentScore / 10));
-					this.stopUiScene.execute()
-					this.launchGameOverScene.execute()
-				},
-        });
+					onComplete: () => {
+						this.registry.set('score', Math.floor(this.currentScore / 10));
+						this.stopUiScene.execute()
+						this.launchGameOverScene.execute()
+					},
+        		});
 		}
-
 	}
 
 	/* END-USER-CODE */

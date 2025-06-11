@@ -92,52 +92,6 @@
             "allowGravity": false
         },
         {
-            "type": "Text",
-            "id": "89113531-ca94-4f7f-93e6-c06d57b136b4",
-            "label": "titleText",
-            "displayName": "Titulo",
-            "padding": 5,
-            "x": 176,
-            "y": 84,
-            "text": "Infinite\nJumper",
-            "align": "center",
-            "fontFamily": "PressStart2P-Regular",
-            "fontSize": "64px",
-            "color": "#ffffffff",
-            "list": [
-                {
-                    "type": "Shadow",
-                    "id": "2285df9a-f5b0-4944-9234-96cea20f57e4",
-                    "label": "shadowFx",
-                    "preFX": true
-                }
-            ]
-        },
-        {
-            "type": "Text",
-            "id": "e0ba3b60-57ff-4145-988d-aaaf8598bd3c",
-            "label": "startGameText",
-            "displayName": "Boton comenzar",
-            "scope": "CLASS",
-            "padding": 5,
-            "hitArea.shape": "RECTANGLE",
-            "hitArea.width": 532,
-            "hitArea.height": 28,
-            "x": 134,
-            "y": 278,
-            "text": "Click Para comenzar",
-            "fontFamily": "PressStart2P-Regular",
-            "fontSize": "28px",
-            "list": [
-                {
-                    "type": "Shadow",
-                    "id": "c6800c41-6e59-4c3a-85a9-bbb7a0683ff8",
-                    "label": "shadowFx_1",
-                    "preFX": true
-                }
-            ]
-        },
-        {
             "prefabId": "7bf8a19d-1211-4b59-bb38-b034085b171f",
             "id": "c2bd58a5-ba84-4889-b90f-ed4d504e8561",
             "label": "onAwakeActionScript",
@@ -145,7 +99,11 @@
                 {
                     "prefabId": "26d6c86f-1f9a-4dc9-9d2e-f64a7fbbbb28",
                     "id": "ec654655-2f12-43c0-8542-25143729cd57",
-                    "label": "fadeEffectCameraActionScript"
+                    "unlock": [
+                        "duration"
+                    ],
+                    "label": "fadeEffectCameraActionScript",
+                    "duration": 1000
                 }
             ]
         }

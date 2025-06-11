@@ -1,0 +1,92 @@
+{
+    "id": "05881c46-c527-43d4-9166-9c25dc0e6821",
+    "sceneType": "SCENE",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": true,
+        "displayName": "",
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "InstruccionesUI",
+        "borderHeight": 1200
+    },
+    "displayList": [
+        {
+            "type": "Text",
+            "id": "d21f3537-3e97-4101-a5c2-b63212cb79c1",
+            "label": "text_1",
+            "x": 400,
+            "y": 112,
+            "originX": 0.5,
+            "originY": 0.5,
+            "text": "¿Como Jugar?",
+            "align": "center",
+            "fontFamily": "PressStart2P-Regular",
+            "fontSize": "48px",
+            "shadow.stroke": true,
+            "list": [
+                {
+                    "type": "Shadow",
+                    "id": "201474a5-f1e7-4d10-b67a-6e57bc504677",
+                    "label": "shadowFx",
+                    "preFX": true
+                }
+            ]
+        },
+        {
+            "type": "Text",
+            "id": "d9f446ef-5a35-434f-acb4-100b9f2f4091",
+            "label": "text_2",
+            "x": 400,
+            "y": 182,
+            "originX": 0.5,
+            "text": "Solo puedes moverte a la izquierda o a la derecha, puedes hacerlo utilizando:\n(En Telefono)\n* Tocando la parte izquierda  y derecha de la pantalla\n(En PC)\n* Presionando A y D\n* Dando click en ambos lados izquierdo y derecho de la pantalla ",
+            "fixedWidth": 626,
+            "fixedHeight": 487,
+            "lineSpacing": 17.5,
+            "align": "center",
+            "fontFamily": "PressStart2P-Regular",
+            "fontSize": "21px",
+            "wordWrapWidth": 600,
+            "list": [
+                {
+                    "type": "Shadow",
+                    "id": "bc99783a-3e8a-4289-80b2-3d70f988fc54",
+                    "label": "shadowFx_1",
+                    "preFX": true
+                }
+            ]
+        },
+        {
+            "type": "Text",
+            "id": "8c19d9cc-88fe-4d9c-8902-42490d6d983f",
+            "label": "BotonRegresar",
+            "scope": "CLASS",
+            "hitArea.shape": "RECTANGLE",
+            "hitArea.width": 288,
+            "hitArea.height": 36,
+            "x": 400,
+            "y": 700,
+            "originX": 0.5,
+            "text": "Regresar",
+            "fontFamily": "PressStart2P-Regular",
+            "fontSize": "36px",
+            "list": [
+                {
+                    "type": "Shadow",
+                    "id": "beb0b754-efa2-4fc3-8bac-b8b80de795a6",
+                    "label": "shadowFx_2",
+                    "preFX": true
+                }
+            ]
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
+}

@@ -61,41 +61,22 @@ export default class MainMenuScene extends Phaser.Scene {
 		this.add.existing(prefabJugador);
 		prefabJugador.body.allowGravity = false;
 
-		// titleText
-		const titleText = this.add.text(176, 84, "", {});
-		titleText.preFX.padding = 5;
-		titleText.text = "Infinite\nJumper";
-		titleText.setStyle({ "align": "center", "color": "#ffffffff", "fontFamily": "PressStart2P-Regular", "fontSize": "64px" });
-
-		// shadowFx
-		titleText.preFX.addShadow(0, 0, 0.1, 1, 0, 6, 1);
-
-		// startGameText
-		const startGameText = this.add.text(134, 278, "", {});
-		startGameText.preFX.padding = 5;
-		startGameText.setInteractive(new Phaser.Geom.Rectangle(0, 0, 532, 28), Phaser.Geom.Rectangle.Contains);
-		startGameText.text = "Click Para comenzar";
-		startGameText.setStyle({ "fontFamily": "PressStart2P-Regular", "fontSize": "28px" });
-
-		// shadowFx_1
-		startGameText.preFX.addShadow(0, 0, 0.1, 1, 0, 6, 1);
-
 		// onAwakeActionScript
 		const onAwakeActionScript = new OnAwakeActionScript(this);
 
 		// fadeEffectCameraActionScript
-		new FadeEffectCameraActionScript(onAwakeActionScript);
+		const fadeEffectCameraActionScript = new FadeEffectCameraActionScript(onAwakeActionScript);
+
+		// fadeEffectCameraActionScript (prefab fields)
+		fadeEffectCameraActionScript.duration = 1000;
 
 		this.prefabJugador = prefabJugador;
-		this.startGameText = startGameText;
 
 		this.events.emit("scene-awake");
 	}
 
 	/** @type {PrefabJugador} */
 	prefabJugador;
-	/** @type {Phaser.GameObjects.Text} */
-	startGameText;
 
 	/* START-USER-CODE */
 
@@ -103,7 +84,7 @@ export default class MainMenuScene extends Phaser.Scene {
 
 	create() {
 		this.editorCreate();
-		this.startGameText.on("pointerup", () => {this.scene.start('Level')})
+		this.scene.launch('EscenaTitulo')
 	}
 
 

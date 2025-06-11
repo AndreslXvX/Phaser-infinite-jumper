@@ -128,26 +128,6 @@
             "animationPreview": true
         },
         {
-            "type": "ArcadeSprite",
-            "id": "48cbd27a-d039-4dec-971d-3745ffa719bd",
-            "label": "arcadesprite_1",
-            "texture": {},
-            "x": 400,
-            "y": 448,
-            "scaleX": 28.8756324487649,
-            "scaleY": 0.7238394071780956,
-            "tintFill": true,
-            "body.velocity.y": -200,
-            "allowGravity": false,
-            "down": false,
-            "left": false,
-            "right": false,
-            "pushable": false,
-            "immovable": true,
-            "body.width": 32,
-            "body.height": 32
-        },
-        {
             "prefabId": "0ed1159f-ee3d-4ce9-82da-e76768c045b5",
             "id": "a7c6544e-7787-4d77-94a1-f963da4cf6cd",
             "unlock": [

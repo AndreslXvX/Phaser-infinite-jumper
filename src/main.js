@@ -3,6 +3,8 @@ import Preload from "./scenes/Preload.js";
 import UI from "./scenes/UI.js";
 import GameOverScene from "./scenes/GameOverScene.js";
 import MainMenuScene from "./scenes/MainMenuScene.js";
+import InstruccionesUI from "./scenes/InstruccionesUI.js";
+import EscenaTitulo from "./scenes/EscenaTitulo.js";
 
 window.addEventListener('load', function () {
 
@@ -31,6 +33,8 @@ window.addEventListener('load', function () {
 	game.scene.add("UI", UI);
 	game.scene.add("GameOverScene", GameOverScene);
 	game.scene.add("Boot", Boot, true);
+	game.scene.add('InstruccionesUI', InstruccionesUI)
+	game.scene.add('EscenaTitulo', EscenaTitulo)
 });
 
 class Boot extends Phaser.Scene {

@@ -1,0 +1,94 @@
+{
+    "id": "afb52fbe-6df9-4912-aefd-328aa9074c1b",
+    "sceneType": "SCENE",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": true,
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "EscenaTitulo",
+        "borderHeight": 1200
+    },
+    "displayList": [
+        {
+            "type": "Text",
+            "id": "1a5c856f-84e1-48d2-bd5f-7da9425d1640",
+            "label": "titleText",
+            "displayName": "Titulo",
+            "scope": "CLASS",
+            "padding": 5,
+            "x": 400,
+            "y": 100,
+            "originX": 0.5,
+            "text": "Infinite\nJumper",
+            "align": "center",
+            "fontFamily": "PressStart2P-Regular",
+            "fontSize": "64px",
+            "color": "#ffffffff",
+            "list": [
+                {
+                    "type": "Shadow",
+                    "id": "5e9fce45-2c08-4ea1-af56-dc46f13d1e6f",
+                    "label": "shadowFx",
+                    "preFX": true
+                }
+            ]
+        },
+        {
+            "type": "Text",
+            "id": "0872846c-e309-42ef-9288-317423e8e27a",
+            "label": "startGameText",
+            "displayName": "Boton comenzar",
+            "scope": "CLASS",
+            "padding": 5,
+            "hitArea.shape": "RECTANGLE",
+            "hitArea.width": 532,
+            "hitArea.height": 28,
+            "x": 134,
+            "y": 300,
+            "text": "Click Para comenzar",
+            "fontFamily": "PressStart2P-Regular",
+            "fontSize": "28px",
+            "list": [
+                {
+                    "type": "Shadow",
+                    "id": "cb7b3bce-81fc-4e05-a1e9-e4420dc5bc60",
+                    "label": "shadowFx_1",
+                    "preFX": true
+                }
+            ]
+        },
+        {
+            "type": "Text",
+            "id": "ad40eb11-ecf9-4b3a-aa70-107d29271fcb",
+            "label": "BotonInstrucciones",
+            "scope": "CLASS",
+            "padding": 5,
+            "hitArea.shape": "RECTANGLE",
+            "hitArea.width": 336,
+            "hitArea.height": 28,
+            "x": 400,
+            "y": 376,
+            "originX": 0.5,
+            "text": "Intrucciones",
+            "fontFamily": "PressStart2P-Regular",
+            "fontSize": "28px",
+            "list": [
+                {
+                    "type": "Shadow",
+                    "id": "e73c2899-c834-4df2-8f2b-4c957b0c6c16",
+                    "label": "shadowFx_2",
+                    "preFX": true
+                }
+            ]
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
+}
