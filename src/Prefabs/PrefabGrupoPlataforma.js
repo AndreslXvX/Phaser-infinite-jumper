@@ -65,12 +65,12 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 	update(){
 		const children = this.group.getChildren();
 		const childrenToMove = [];
-		this.maxPlatformDistance = this.scene.cameras.main.worldView.centerY * 5
+		this.maxPlatformDistance = this.scene.cameras.main.worldView.centerY * 5 
 		this.playerPosition = this.scene.cameras.main.worldView.centerY
 
 		// detectar plataformas fuera de pantalla
 		children.forEach((child) => {
-			if(this.playerPosition <= child.y - 600 ){
+			if(this.playerPosition <= child.y - 700 ){
 				this.BottomPlatformYPosition = child.y;
 				childrenToMove.push(child);
 			}
@@ -107,6 +107,13 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 			if((this.scene.currentScore) >= 20){
 				console.log("dificultad2")
 
+				if(Phaser.Math.RND.between(0,1) == 1){child.moverPlataforma(this.velocidadPlataforma)} 
+				else {child.moverPlataforma(this.velocidadPlataforma * -1)}
+			}
+			if((this.scene.currentScore) >= 30){
+				console.log("dificultad3")
+
+				child.setTexture('Plataforma-2')
 				if(Phaser.Math.RND.between(0,1) == 1){child.moverPlataforma(this.velocidadPlataforma)} 
 				else {child.moverPlataforma(this.velocidadPlataforma * -1)}
 			}
