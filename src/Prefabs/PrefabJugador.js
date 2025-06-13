@@ -15,7 +15,6 @@ export default class PrefabJugador extends Phaser.Physics.Arcade.Sprite {
 		this.scaleX = 3;
 		this.scaleY = 3;
 		scene.physics.add.existing(this, false);
-		this.body.checkCollision.up = false;
 		this.body.setOffset(31, 26);
 		this.body.setSize(15, 39, false);
 		this.play("AnimacionQuieto");

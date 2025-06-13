@@ -26,32 +26,34 @@ export default class PrefabPlataforma extends Phaser.Physics.Arcade.Image {
 
 		/* START-USER-CTR-CODE */
 
-		this.platformTexture = Phaser.Math.Between(1, 5);
+		//this.platformTexture = Phaser.Math.Between(1, 5);
 
-		if(this.platformTexture == 1){
-			this.body.setOffset(0,50)
-		} else if(this.platformTexture == 2){
-			this.body.setOffset(0,50)
-		} else if(this.platformTexture == 3){
-			this.body.setOffset(0,50)
-		} else if(this.platformTexture == 4){
-			this.body.setOffset(0,200)
-		} else if(this.platformTexture == 5){
-			this.body.setOffset(0,200)
-		}
-		switch(this.platformTexture){
-					case(1): this.platformTexture = "Plataforma-1"
-				break
-					case(2): this.platformTexture = "Plataforma-2"
-				break
-					case(3): this.platformTexture = "Plataforma-3"
-				break
-					case(4): this.platformTexture = "Plataforma-4"
-				break
-					case(5): this.platformTexture = "Plataforma-5"
-				break
-		}
-		this.setTexture(this.platformTexture)
+		// if(this.platformTexture == 1){
+		// 	this.body.setOffset(0,50)
+		// } else if(this.platformTexture == 2){
+		// 	this.body.setOffset(0,50)
+		// } else if(this.platformTexture == 3){
+		// 	this.body.setOffset(0,50)
+		// } else if(this.platformTexture == 4){
+		// 	this.body.setOffset(0,200)
+		// } else if(this.platformTexture == 5){
+		// 	this.body.setOffset(0,200)
+		// }
+		// switch(this.platformTexture){
+		// 			case(1): this.platformTexture = "Plataforma-1"
+		// 		break
+		// 			case(2): this.platformTexture = "Plataforma-2"
+		// 		break
+		// 			case(3): this.platformTexture = "Plataforma-3"
+		// 		break
+		// 			case(4): this.platformTexture = "Plataforma-4"
+		// 		break
+		// 			case(5): this.platformTexture = "Plataforma-5"
+		// 		break
+		// }
+		this.setTexture('Plataforma-1')
+		this.colisionSuperior = false
+		this.colisionInferior = false
 		// this.randomVelo = Phaser.Math.RND.between(0, 1);
 		// switch(this.randomVelo) {
 		// 		case(0): this.horizontalVelocity = 400;
@@ -61,23 +63,25 @@ export default class PrefabPlataforma extends Phaser.Physics.Arcade.Image {
 		// }
 		// this.body.velocity.x = this.horizontalVelocity;
 
-		
+
 
 		// Write your code here.
 		/* END-USER-CTR-CODE */
 	}
+
 	/* START-USER-CODE */
-
 	update(){
-		
-	};
-
+		if(this.body.touching.up && this.colisionSuperior == false){
+			this.colisionSuperior = true
+			this.scene.currentScore++
+		}
+	}
 	moverPlataforma(velocidad){
 		this.body.velocity.x = velocidad
 	};
 	// Write your code here.
 	/* END-USER-CODE */
-};
+}
 
 /* END OF COMPILED CODE */
 

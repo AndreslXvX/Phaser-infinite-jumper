@@ -26,7 +26,6 @@
             "animationPlayMethod": 1,
             "animationKey": "AnimacionQuieto",
             "animationPreview": true,
-            "up": false,
             "body.width": 15,
             "body.height": 39,
             "body.offset.x": 31,

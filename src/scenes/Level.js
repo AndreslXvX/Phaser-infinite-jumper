@@ -12,6 +12,7 @@ import StopSceneActionScript from "../scriptnodes/scene/StopSceneActionScript.js
 import OnAwakeActionScript from "../scriptnodes/utils/OnAwakeActionScript.js";
 import FadeEffectCameraActionScript from "../scriptnodes/camera/FadeEffectCameraActionScript.js";
 /* START-USER-IMPORTS */
+import PrefabPlataforma from "../Prefabs/PrefabPlataforma.js";
 /* END-USER-IMPORTS */
 
 export default class Level extends Phaser.Scene {
@@ -67,7 +68,7 @@ export default class Level extends Phaser.Scene {
 
 		// floorImage
 		/** @type {Phaser.GameObjects.Image & { body: Phaser.Physics.Arcade.Body }} */
-		const floorImage = this.add.image(400, 48, "platform");
+		const floorImage = this.add.image(400, 25, "platform");
 		floorImage.setInteractive(new Phaser.Geom.Rectangle(0, 0, 240, 32), Phaser.Geom.Rectangle.Contains);
 		floorImage.scaleX = 3;
 		floorImage.scaleY = 3;
@@ -113,7 +114,7 @@ export default class Level extends Phaser.Scene {
 		const movingMiddleGround = [middleGroundPrefab];
 
 		// colliderPlayerPlatform
-		const colliderPlayerPlatform = this.physics.add.collider(prefabJugador, prefabGrupoPlataforma.group);
+		const colliderPlayerPlatform = this.physics.add.collider(prefabJugador, prefabGrupoPlataforma.group, prefabGrupoPlataforma.AumentarPuntos);
 
 		// colliderPlayerWalls
 		const colliderPlayerWalls = this.physics.add.collider(prefabJugador, wallsBody);
@@ -208,6 +209,7 @@ export default class Level extends Phaser.Scene {
 		this.firstJumpMade = false
 		this.setoffsetY = 0
 		this.jumpsNum = 0
+		this.scoreCount = 0
 
 	}
 
@@ -218,13 +220,12 @@ export default class Level extends Phaser.Scene {
 
 		this.ActualizarSpritesMuros();
 		this.GameOver();
-
+		this.Saltojugador()
 		this.MovimientoJugador(pointer);
-		this.Saltojugador();
-		this.ActualizarPuntos(distance, distance);
 
 		this.prefabGrupoPlataforma.update();
 
+		
 	}
 
 	MovimientoJugador(pointer){
@@ -252,7 +253,6 @@ export default class Level extends Phaser.Scene {
 	}
 
 	Saltojugador(){
-		
 		const tocarFondo = this.prefabJugador.body.touching.down;
 		if(tocarFondo){
 			this.prefabJugador.play('animacionSaltar')
@@ -268,16 +268,17 @@ export default class Level extends Phaser.Scene {
 		}
 	}
 
-	ActualizarPuntos(distancia){
-		if(!this.firstJumpMade){
-				this.firstJumpMade = true;
-				this.startingMaxHeight = distancia
-			}
-		if(distancia > this.maxHeight && this.firstJumpMade){
-			this.maxHeight = distancia;
-			this.currentScore = this.maxHeight - this.startingMaxHeight;
-			this.scene.get("UI").updateScoreText(Math.floor(this.currentScore / 10))
-		}
+	ActualizarPuntos(){
+		// if(!this.firstJumpMade){
+		// 		this.firstJumpMade = true;
+		// 		this.startingMaxHeight = distancia
+		// 	}
+		// if(distancia > this.maxHeight && this.firstJumpMade){
+		// 	this.maxHeight = distancia;
+		// 	this.currentScore = this.maxHeight - this.startingMaxHeight;
+
+			
+		//}
 	}
 	ActualizarSpritesMuros(){
 		this.movingWallsTileSprites.forEach((tileSprite) => {
@@ -302,20 +303,20 @@ export default class Level extends Phaser.Scene {
 			this.prefabJugador.setVelocityY(15);
 			return
 		}
-
+		this.scene.get("UI").updateScoreText(this.currentScore)
 		if(this.prefabJugador.y > this.prefabGrupoPlataforma.BottomPlatformYPosition){
 			this.isGameOver = true;
 			this.prefabJugador.play('animacionPerder');
-			this.prefabJugador.setVelocityX(0)
+			this.prefabJugador.setVelocityX(0);
 			const fx = this.prefabJugador.preFX.addWipe(0.1, 1, 0);
 			this.tweens.add({
 				targets: fx,
 				progress: 1,
 				duration: 3000,
 					onComplete: () => {
-						this.registry.set('score', Math.floor(this.currentScore / 10));
-						this.stopUiScene.execute()
-						this.launchGameOverScene.execute()
+						this.stopUiScene.execute();
+						this.registry.set('score', this.currentScore);
+						this.launchGameOverScene.execute();
 					},
         		});
 		}

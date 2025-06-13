@@ -81,7 +81,7 @@
                 "key": "platform"
             },
             "x": 400,
-            "y": 48,
+            "y": 25,
             "scaleX": 3,
             "scaleY": 3,
             "ArcadeComponent.active": true,
@@ -187,7 +187,8 @@
             "type": "Collider",
             "label": "colliderPlayerPlatform",
             "object1": "prefabJugador",
-            "object2": "prefabGrupoPlataforma.group"
+            "object2": "prefabGrupoPlataforma.group",
+            "collideCallback": "prefabGrupoPlataforma.AumentarPuntos"
         },
         {
             "id": "06896dac-c901-4239-b68d-be2c8fe17dfb",

@@ -21,13 +21,16 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 		const _scene = scene
 		this.group = _scene.add.group ({
 			classType: PrefabPlataforma,
-			//runChildUpdate: true
+			runChildUpdate: true
 		});
 		this.betweenY = 300
 		this.UpperPlatformYPosition = 0
 		this.velocidadPlataforma = 400
 		this.minX = 180
 		this.maxX = 620
+
+		this.group.get(400, 80)
+		
 
 		for (let i = 1; i < 10; i += 1) {
 			const x = Phaser.Math.RND.between(this.minX, this.maxX);
@@ -65,6 +68,7 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 		this.maxPlatformDistance = this.scene.cameras.main.worldView.centerY * 5
 		this.playerPosition = this.scene.cameras.main.worldView.centerY
 
+		// detectar plataformas fuera de pantalla
 		children.forEach((child) => {
 			if(this.playerPosition <= child.y - 600 ){
 				this.BottomPlatformYPosition = child.y;
@@ -82,20 +86,34 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 				}
 			
 		})
+		// detectar plataformas fuera de pantalla
 
+			
+		//crear nuevas plataformas
 		childrenToMove.forEach((child) => {
 			child.x = Phaser.Math.Between(this.minX, this.maxX)
 			let childrenToMoveYOffset = this.UpperPlatformYPosition - this.betweenY
 			child.y = childrenToMoveYOffset;
+			child.colisionSuperior = false
+			if((this.scene.currentScore) >= 10){	
+				console.log("dificultad1")
+				if(Phaser.Math.RND.between(0,1) == 1){
+					if(Phaser.Math.RND.between(0,1) == 1){child.moverPlataforma(this.velocidadPlataforma)} 
+					else {child.moverPlataforma(this.velocidadPlataforma * -1)}
+				} else {
+					child.moverPlataforma(0)
+				}
+			} 
+			if((this.scene.currentScore) >= 20){
+				console.log("dificultad2")
 
-			if(Phaser.Math.RND.between(0,1) == 1){
 				if(Phaser.Math.RND.between(0,1) == 1){child.moverPlataforma(this.velocidadPlataforma)} 
 				else {child.moverPlataforma(this.velocidadPlataforma * -1)}
-			} else {
-				child.moverPlataforma(0)
 			}
 			
 		})
+		//crear nuevas plataformas
+	
 
 	}
 
