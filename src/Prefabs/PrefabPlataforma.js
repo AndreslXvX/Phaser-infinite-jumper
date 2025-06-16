@@ -71,12 +71,19 @@ export default class PrefabPlataforma extends Phaser.Physics.Arcade.Image {
 
 	/* START-USER-CODE */
 	update(){
+		
 		if(this.body.touching.up && this.colisionSuperior == false){
 			this.colisionSuperior = true
 			this.scene.currentScore++
 		}
+		if(this.body.touching.down == true && this.scene.prefabJugador.body.touching.up == true){
+			this.scene.colisionJugadorPlataforma = true
+			console.log(this.scene.colisionJugadorPlataforma)
+			console.log("colision jugador y plataforma")
+		}
 	}
 	moverPlataforma(velocidad){
+		
 		this.body.velocity.x = velocidad
 	};
 	// Write your code here.

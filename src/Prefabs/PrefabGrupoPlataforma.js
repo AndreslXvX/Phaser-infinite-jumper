@@ -29,10 +29,10 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 		this.minX = 180
 		this.maxX = 620
 
-		this.group.get(400, 80)
+		
 		
 
-		for (let i = 1; i < 10; i += 1) {
+		for (let i = 1; i < 6; i += 1) {
 			const x = Phaser.Math.RND.between(this.minX, this.maxX);
 			const y = i * (this.betweenY * -1);
 			this.group.get(x, y)
@@ -70,6 +70,9 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 
 		// detectar plataformas fuera de pantalla
 		children.forEach((child) => {
+			if(this.scene.isGameOver  == true){
+			child.body.setVelocityX(0);
+		}
 			if(this.playerPosition <= child.y - 700 ){
 				this.BottomPlatformYPosition = child.y;
 				childrenToMove.push(child);
@@ -87,39 +90,55 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 			
 		})
 		// detectar plataformas fuera de pantalla
-
-			
+		
+		
 		//crear nuevas plataformas
 		childrenToMove.forEach((child) => {
+			
 			child.x = Phaser.Math.Between(this.minX, this.maxX)
 			let childrenToMoveYOffset = this.UpperPlatformYPosition - this.betweenY
 			child.y = childrenToMoveYOffset;
 			child.colisionSuperior = false
-			if((this.scene.currentScore) >= 10){	
+			if((this.scene.currentScore) >= 20){	
 				console.log("dificultad1")
 				if(Phaser.Math.RND.between(0,1) == 1){
 					if(Phaser.Math.RND.between(0,1) == 1){child.moverPlataforma(this.velocidadPlataforma)} 
 					else {child.moverPlataforma(this.velocidadPlataforma * -1)}
 				} 
-						// child.body.checkCollision.down = true;
-						// child.setTexture('Plataforma-2')
-
-				// else {
-				// 	child.moverPlataforma(0)
-				// }
+				else {
+					child.moverPlataforma(0)
+				}
 			} 
-			if((this.scene.currentScore) >= 20){
+			if((this.scene.currentScore) >= 40){
 				console.log("dificultad2")
 
 				if(Phaser.Math.RND.between(0,1) == 1){child.moverPlataforma(this.velocidadPlataforma)} 
 				else {child.moverPlataforma(this.velocidadPlataforma * -1)}
 			}
-			if((this.scene.currentScore) >= 30){
+			if((this.scene.currentScore) >= 60){
 				console.log("dificultad3")
 
+				child.body.checkCollision.down = true;
 				child.setTexture('Plataforma-2')
-				if(Phaser.Math.RND.between(0,1) == 1){child.moverPlataforma(this.velocidadPlataforma)} 
-				else {child.moverPlataforma(this.velocidadPlataforma * -1)}
+				child.moverPlataforma(0)
+
+			}
+			if((this.scene.currentScore) >= 80){
+				console.log("dificultad4")
+
+				if(Phaser.Math.RND.between(0,1) == 1){
+					if(Phaser.Math.RND.between(0,1) == 1){child.moverPlataforma(this.velocidadPlataforma)} 
+					else {child.moverPlataforma(this.velocidadPlataforma * -1)}
+				} 
+				else {
+					child.moverPlataforma(0)
+				}
+			}
+			if((this.scene.currentScore) >= 100){
+				console.log("dificultad5")
+					if(Phaser.Math.RND.between(0,1) == 1){child.moverPlataforma(this.velocidadPlataforma)} 
+					else {child.moverPlataforma(this.velocidadPlataforma * -1)}
+			
 			}
 			
 		})

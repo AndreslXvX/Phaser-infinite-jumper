@@ -203,13 +203,14 @@ export default class Level extends Phaser.Scene {
 		this.cameras.main.startFollow(this.prefabJugador, true, 1, 1, 0, 200);
 		this.cameras.main.setDeadzone(this.scale.width)
 		this.isGameOver = false
-		this.currentScore = 30
+		this.currentScore = 0
 		this.maxHeight = 0
 		this.startingMaxHeight = 0
 		this.firstJumpMade = false
 		this.setoffsetY = 0
 		this.jumpsNum = 0
 		this.scoreCount = 0
+		this.colisionJugadorPlataforma = false
 
 	}
 
@@ -224,7 +225,6 @@ export default class Level extends Phaser.Scene {
 		this.MovimientoJugador(pointer);
 
 		this.prefabGrupoPlataforma.update();
-
 		
 	}
 
@@ -304,7 +304,7 @@ export default class Level extends Phaser.Scene {
 			return
 		}
 		this.scene.get("UI").updateScoreText(this.currentScore)
-		if(this.prefabJugador.y > this.prefabGrupoPlataforma.BottomPlatformYPosition){
+		if(this.prefabJugador.y > this.prefabGrupoPlataforma.BottomPlatformYPosition || this.colisionJugadorPlataforma){
 			this.isGameOver = true;
 			this.prefabJugador.play('animacionPerder');
 			this.prefabJugador.setVelocityX(0);
@@ -317,6 +317,7 @@ export default class Level extends Phaser.Scene {
 						this.stopUiScene.execute();
 						this.registry.set('score', this.currentScore);
 						this.launchGameOverScene.execute();
+						this.prefabJugador.disableBody(true)
 					},
         		});
 		}
