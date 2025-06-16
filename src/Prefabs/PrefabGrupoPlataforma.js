@@ -100,9 +100,13 @@ export default class PrefabGrupoPlataforma extends Phaser.GameObjects.Layer {
 				if(Phaser.Math.RND.between(0,1) == 1){
 					if(Phaser.Math.RND.between(0,1) == 1){child.moverPlataforma(this.velocidadPlataforma)} 
 					else {child.moverPlataforma(this.velocidadPlataforma * -1)}
-				} else {
-					child.moverPlataforma(0)
-				}
+				} 
+						// child.body.checkCollision.down = true;
+						// child.setTexture('Plataforma-2')
+
+				// else {
+				// 	child.moverPlataforma(0)
+				// }
 			} 
 			if((this.scene.currentScore) >= 20){
 				console.log("dificultad2")

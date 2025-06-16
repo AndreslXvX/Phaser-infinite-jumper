@@ -203,7 +203,7 @@ export default class Level extends Phaser.Scene {
 		this.cameras.main.startFollow(this.prefabJugador, true, 1, 1, 0, 200);
 		this.cameras.main.setDeadzone(this.scale.width)
 		this.isGameOver = false
-		this.currentScore = 25
+		this.currentScore = 30
 		this.maxHeight = 0
 		this.startingMaxHeight = 0
 		this.firstJumpMade = false
